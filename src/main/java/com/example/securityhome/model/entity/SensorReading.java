@@ -1,4 +1,4 @@
-package com.example.securityhome.model;
+package com.example.securityhome.model.entity;
 
 import jakarta.persistence.*;
 
@@ -8,7 +8,7 @@ public class SensorReading {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    private double values;
+    private float sensorValues;
     private String units;
 
     @ManyToOne
@@ -16,11 +16,11 @@ public class SensorReading {
     Sensor sensor;
 
     public double getValues() {
-        return values;
+        return sensorValues;
     }
 
-    public void setValues(double values) {
-        this.values = values;
+    public void setValues(float sensorValues) {
+        this.sensorValues = sensorValues;
     }
 
     public String getUnits() {

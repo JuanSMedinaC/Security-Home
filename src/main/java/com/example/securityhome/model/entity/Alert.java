@@ -1,4 +1,4 @@
-package com.example.securityhome.model;
+package com.example.securityhome.model.entity;
 
 import jakarta.persistence.*;
 
