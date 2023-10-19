@@ -1,4 +1,5 @@
-package com.example.securityhome.model;
+package com.example.securityhome.model.entity;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -6,9 +7,24 @@ import java.util.List;
 @Entity
 @Table(name = "users")
 public class User {
+
+    public User() {
+    }
+
+    public User(String id, String name, String email, String password) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+    }
+
+    public User(String name, String email, String password) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+    }
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private String id;
 
     private String name;
 
@@ -17,6 +33,7 @@ public class User {
     private String password;
 
     @ManyToOne
+    @JsonIgnoreProperties("users")
     @JoinColumn(name = "role_id")
     Role role;
 
@@ -53,11 +70,11 @@ public class User {
         this.role = role;
     }
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -91,5 +108,14 @@ public class User {
 
     public void setCamera(List<Camera> camera) {
         this.camera = camera;
+    }
+
+    @Override
+    public String toString() {
+        String str = "name: "+name+
+                "\n email: "+ email+
+                "\n password: "+ password+
+                "\n role"+ role.getType();
+        return super.toString();
     }
 }
