@@ -37,6 +37,7 @@ public class UsersController {
             var entityUser=repository.getUserByEmail(user.getE());
             user.setId(entityUser.get(0).getId());
             return ResponseEntity.status(200).body(user);
+
         }
         return ResponseEntity.status(403).body("Incorrect user data");
     }
