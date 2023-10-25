@@ -1,0 +1,192 @@
+#modoAdmBtn {
+    display: inline-block;
+    background-color: #003fdf;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #EFEFEF;
+    font: optional;
+    font-weight: 300;
+    border-radius: 100px;
+    margin: 25px;
+    padding: 25px;
+    left:20px;
+    position:absolute;
+    width:271px;
+    top: 480px;
+
+}
+
+#loginBtn {
+  background-color: #1280c9;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #EFEFEF;
+  font: optional;
+  font-weight: 300;
+  border-radius: 100px;
+  margin: 25px;
+  padding: 25px;
+  left:880px;
+  position:absolute;
+  width:171px;
+}
+
+.LogInBtn{
+  background-color:#19849c;
+  height:60px;
+  color: #EFEFEF;
+  width:220px;
+  border-radius:100px;
+  padding-left:60px;
+  padding-right:60px;
+  padding-top:25px;
+  padding-bottom:25px;
+  display:flex;
+  flex-direction:row;
+  justify-content:center;
+  align-items:center;
+  gap:10px;
+  position:relative;
+  right: -30%;
+}
+
+.tituloempresa
+{
+  height:4px;
+  width:248px;
+  padding:0px;
+  left: -780px;
+  top: -28px;
+  position:relative;
+}
+.securityhome
+{
+color:#ffffff;
+text-align:left;
+font-size:26px;
+font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+font-stretch:condensed;
+line-height:20px;
+border-style:hidden;
+outline:none;
+top:15px;
+left:490px;
+position:absolute;
+width:172px;
+}
+
+/* Para editar titulo de la priera visa de admin*/
+
+.tituloempresaAd 
+{
+  height:4px;
+  width:248px;
+  padding:0px;
+  left:-790px;
+  top: -20px;
+  position:relative;
+}
+.securityhomeAd
+{
+  color:#ffffff;
+  text-align:left;
+  font-size:24px;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  line-height:20px;
+  border-style:hidden;
+  outline:none;
+  top:5px;
+  left:490px;
+  position:absolute;
+  width:240px;
+}
+
+#info{
+  font-family:Arial, Helvetica, sans-serif;
+}
+
+.texto-mitad 
+{
+font-size:60px;
+font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+left:150px;
+position:absolute;
+line-height:50px;
+width:715px;
+top: 211px;
+}
+
+.mov-img {
+  max-width: 100%; /* Asegura que la imagen no sea más ancha que su contenedor */
+  position:absolute;/* Mantiene la proporción de la imagen */
+  top: 270px;
+  right: 43%;
+}
+
+.mov-imgLogo {
+  max-width: 5.8%; /* Asegura que la imagen no sea más ancha que su contenedor */
+  position:absolute;/* Mantiene la proporción de la imagen */
+  top: 1px;
+  right: 90%;
+}
+
+.rectangle594
+{
+background-color:#000000;
+height:20%;
+width:10%;
+left:89.91%;
+top:20%;
+position:absolute;
+}
+
+.exit{
+height:13%;
+width:6.5%;
+left:89.91%;
+top:1%;
+position:absolute;
+}
+
+.tituloempresaL
+{
+  height:6%;
+  width:24%;
+  padding:0%;
+  top: -29%;
+  position:relative;
+}
+.securityhomeL
+{
+color:#ffffff;
+font-size:158%;
+border-style:hidden;
+outline:none;
+font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+left:-274%;
+position:absolute;
+}
+
+.form{
+  width: 40%;
+  margin: auto;
+  
+}
+
+.LogoLogin{
+height:22%;
+width:14%;
+left:43%;
+top:18%;
+position:absolute;
+}
+
+.LTYA{
+font-size: 150%;
+color: #ffffff;
+font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+left:42%;
+top:45%;
+position:absolute;
+}
+
