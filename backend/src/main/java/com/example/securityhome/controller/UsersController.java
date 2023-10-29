@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
 import java.util.UUID;
 
 @RestController
@@ -72,4 +73,37 @@ public class UsersController {
         return ResponseEntity.status(409).body("Incorrect UUID");
     }
 
+    @PostMapping("user/edit/mail")
+    public ResponseEntity<?> editMail(@RequestHeader("Authorization") String authorization, @RequestBody UserDTO user){
+        if(auth.findByUUID(authorization)!=null){
+            if(repository.findById(authorization).orElse(null).getPassword().equals(user.getP())) {
+                User userEntity = repository.findById(authorization).orElse(null);
+                userEntity.setEmail(user.getE());
+                user.setN(userEntity.getName());
+                repository.save(userEntity);
+                return ResponseEntity.status(200).body(user);
+            }
+
+        }
+
+        return ResponseEntity.status(403).body("Couldn't be edited correctly");
+    }
+
+    @PostMapping("user/edit/password")
+    public ResponseEntity<?> editPass(@RequestHeader("Authorization") String authorization, @RequestBody Map<String,String> json) {
+        if (auth.findByUUID(authorization) != null) {
+            if (repository.findById(authorization).orElse(null).getPassword().equals(json.get("oldPass"))) {
+                User userEntity = repository.findById(authorization).orElse(null);
+                userEntity.setPassword(json.get("newPass"));
+                UserDTO user = new UserDTO();
+                user.setN(userEntity.getName());
+                user.setE(userEntity.getEmail());
+                user.setP(userEntity.getPassword());
+                repository.save(userEntity);
+                return ResponseEntity.status(200).body(user);
+            }
+
+        }
+        return ResponseEntity.status(403).body("Conflict on editing password");
+    }
 }
