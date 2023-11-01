@@ -14,6 +14,7 @@ import java.util.Map;
 import java.util.UUID;
 
 @RestController
+@CrossOrigin(maxAge = 3600)
 public class UsersController {
     @Autowired
     private Authentication auth;
@@ -21,21 +22,21 @@ public class UsersController {
     private UserRepository repository;
 
     @Autowired
-    public void setRepository(UserRepository repository){
+    public void setRepository(UserRepository repository) {
         this.repository = repository;
     }
 
     private RoleRepository roleRepository;
 
     @Autowired
-    public void setRepository(RoleRepository repository){
+    public void setRepository(RoleRepository repository) {
         this.roleRepository = repository;
     }
 
     @PostMapping("login")
-    public ResponseEntity<?> logIn(@RequestBody UserLoginDTO user){
-        if (auth.isValid(user)!=null){
-            var entityUser=repository.getUserByEmail(user.getE());
+    public ResponseEntity<?> logIn(@RequestBody UserLoginDTO user) {
+        if (auth.isValid(user) != null) {
+            var entityUser = repository.getUserByEmail(user.getE());
             user.setId(entityUser.get(0).getId());
             return ResponseEntity.status(200).body(user);
 
@@ -43,41 +44,57 @@ public class UsersController {
         return ResponseEntity.status(403).body("Incorrect user data");
     }
 
-    @PostMapping("user/register")
-    public ResponseEntity<?> register(@RequestHeader("Authorization") String authorization, @RequestBody UserDTO user ) {
-
-        if (auth.findByUUID(authorization)!=null&& auth.findByUUID(authorization).getRole().getType().equals("admin")){
-            if(repository.getUserByEmail(user.getE())!=null){
-                return ResponseEntity.status(409).body("Email is already used");
-            }
-            User userEntity = new User(user.getN(), user.getE(), user.getP());
-            userEntity.setId(UUID.randomUUID().toString());
-            var role = roleRepository.findById(2L).orElse(null);
-            if (role != null) {
-                userEntity.setRole(role);
-            }else{
-                return ResponseEntity.status(501).body("Couldn't create user");
-            }
-            repository.save(userEntity);
-            return ResponseEntity.status(200).body(user);
-        }else {
-            return ResponseEntity.status(403).body("Need to log as admin");
+    @GetMapping("auth")
+    public ResponseEntity<?> auth(@RequestHeader("Authorization") String authorization){
+        var user = auth.findByUUID(authorization);
+        if (user != null){
+            UserDTO userDto = new UserDTO();
+            userDto.setN(user.getName());
+            userDto.setE(user.getEmail());
+            userDto.setP(user.getPassword());
+            return ResponseEntity.status(200).body(userDto);
         }
+        return ResponseEntity.status(409).body("Forbidden");
+    }
+
+    @PostMapping("user/register")
+    public ResponseEntity<?> register(@RequestHeader("Authorization") String authorization, @RequestBody UserDTO user) {
+
+        if (auth.findByUUID(authorization) != null && auth.findByUUID(authorization).getRole().getType().equals("admin")) {
+            try{
+                if (repository.getUserByEmail(user.getE()).get(0) != null) {
+                    return ResponseEntity.status(409).body("Email is already used");
+                }
+            }catch (IndexOutOfBoundsException e) {
+                User userEntity = new User(user.getN(), user.getE(), user.getP());
+                userEntity.setId(UUID.randomUUID().toString());
+                var role = roleRepository.findById(2L).orElse(null);
+                if (role != null) {
+                    userEntity.setRole(role);
+                } else {
+                    return ResponseEntity.status(501).body("Couldn't create user");
+                }
+                repository.save(userEntity);
+                return ResponseEntity.status(200).body(user);
+            }
+        }
+
+        return ResponseEntity.status(403).body("Need to log as admin");
     }
 
     @GetMapping("user/all")
-    public ResponseEntity<?> listAll(@RequestHeader("Authorization") String authorization){
+    public ResponseEntity<?> listAll(@RequestHeader("Authorization") String authorization) {
         var users = repository.findAll();
-        if (auth.findByUUID(authorization)!=null&& auth.findByUUID(authorization).getRole().getType().equals("admin")){
+        if (auth.findByUUID(authorization) != null && auth.findByUUID(authorization).getRole().getType().equals("admin")) {
             return ResponseEntity.status(200).body(users);
         }
         return ResponseEntity.status(403).body("Incorrect UUID");
     }
 
     @PostMapping("user/edit/mail")
-    public ResponseEntity<?> editMail(@RequestHeader("Authorization") String authorization, @RequestBody UserDTO user){
-        if(auth.findByUUID(authorization)!=null){
-            if(repository.findById(authorization).orElse(null).getPassword().equals(user.getP())) {
+    public ResponseEntity<?> editMail(@RequestHeader("Authorization") String authorization, @RequestBody UserDTO user) {
+        if (auth.findByUUID(authorization) != null) {
+            if (repository.findById(authorization).orElse(null).getPassword().equals(user.getP())) {
                 User userEntity = repository.findById(authorization).orElse(null);
                 userEntity.setEmail(user.getE());
                 user.setN(userEntity.getName());
@@ -91,7 +108,7 @@ public class UsersController {
     }
 
     @PostMapping("user/edit/password")
-    public ResponseEntity<?> editPass(@RequestHeader("Authorization") String authorization, @RequestBody Map<String,String> json) {
+    public ResponseEntity<?> editPass(@RequestHeader("Authorization") String authorization, @RequestBody Map<String, String> json) {
         if (auth.findByUUID(authorization) != null) {
             if (repository.findById(authorization).orElse(null).getPassword().equals(json.get("oldPass"))) {
                 User userEntity = repository.findById(authorization).orElse(null);
@@ -106,5 +123,19 @@ public class UsersController {
 
         }
         return ResponseEntity.status(403).body("Conflict on editing password");
+    }
+
+    @PostMapping("user/edit/name")
+    public ResponseEntity<?> editName(@RequestHeader("Authorization") String authorization, @RequestBody UserDTO user) {
+        if (auth.findByUUID(authorization) != null) {
+            if (repository.findById(authorization).orElse(null).getPassword().equals(user.getP())) {
+                User userEntity = repository.findById(authorization).orElse(null);
+                userEntity.setName(user.getN());
+                user.setE(userEntity.getEmail());
+                repository.save(userEntity);
+                return ResponseEntity.status(200).body(user);
+            }
+        }
+        return ResponseEntity.status(403).body("Couldn't be edited correctly");
     }
 }
