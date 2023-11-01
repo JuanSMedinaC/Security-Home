@@ -13,6 +13,10 @@ public class UserLoginDTO {
         this.p = p;
     }
 
+    public UserLoginDTO() {
+
+    }
+
     public String getId() {
         return i;
     }
