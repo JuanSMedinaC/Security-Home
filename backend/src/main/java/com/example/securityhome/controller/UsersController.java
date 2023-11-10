@@ -37,8 +37,13 @@ public class UsersController {
     public ResponseEntity<?> logIn(@RequestBody UserLoginDTO user) {
         if (auth.isValid(user) != null) {
             var entityUser = repository.getUserByEmail(user.getE());
-            user.setId(entityUser.get(0).getId());
-            return ResponseEntity.status(200).body(user);
+            UserDTO userDto = new UserDTO();
+            userDto.setId(entityUser.get(0).getId());
+            userDto.setN(entityUser.get(0).getName());
+            userDto.setE(entityUser.get(0).getEmail());
+            userDto.setP(entityUser.get(0).getPassword());
+            userDto.setR(entityUser.get(0).getRole().getId());
+            return ResponseEntity.status(200).body(userDto);
 
         }
         return ResponseEntity.status(403).body("Incorrect user data");
@@ -52,6 +57,7 @@ public class UsersController {
             userDto.setN(user.getName());
             userDto.setE(user.getEmail());
             userDto.setP(user.getPassword());
+            userDto.setR(user.getRole().getId());
             return ResponseEntity.status(200).body(userDto);
         }
         return ResponseEntity.status(409).body("Forbidden");
