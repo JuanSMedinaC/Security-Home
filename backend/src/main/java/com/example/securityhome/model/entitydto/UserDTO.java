@@ -8,6 +8,9 @@ public class UserDTO {
 
     private String p;
 
+    public UserDTO() {
+    }
+
     public UserDTO(String n, String e, String p) {
         this.n = n;
         this.e = e;
