@@ -3,13 +3,15 @@ const emailInput = document.getElementById('emailInput');
 const passInput = document.getElementById('passInput');
 const passAgainInput = document.getElementById('passAgainInput');
 const singUpBtn = document.getElementById('SingUpBtn');
+const iPadd = "http://127.0.0.1:8080";
 
 async function createUser(data){ 
-
-    let response = await fetch('127.0.0.1/user/create',{
+    let auth = localStorage.getItem("Authorization");
+    let response = await fetch(iPadd+'/user/register',{
         method: 'POST',
         headers: {
-            'Content-Type':'application/json'
+            'Content-Type':'application/json',
+            'Authorization' : auth
         },
         body:data
     });
@@ -19,15 +21,20 @@ async function createUser(data){
 }
 
 async function sendUser(){
+    if(passInput.value==passAgainInput.value){
+        var pass = passInput.value;
+    }else{
+        window.location.reload();
+    }
 
     let username = usernameInput.value;
     let email = emailInput.value;
-    let pass = passInput.value;
+    
 
     let userDTO = {
-        nombreDeUsuario : username, 
-        correoElectronico : email, 
-        clave: pass
+        n : username, 
+        e : email, 
+        p : pass
     }
 
     let json = JSON.stringify(userDTO);
