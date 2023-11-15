@@ -67,8 +67,6 @@ async function verifyLogin(){
     if(response.status == 200){
         let responseData = await response.json();
         console.log(responseData);
-    }else{
-        window.location.href="../VistaUsuario.html"
     }     
     return true;
 }
