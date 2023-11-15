@@ -2,11 +2,15 @@ package com.example.securityhome.model.entitydto;
 
 public class UserDTO {
 
+    private String id;
+
     private String n;
 
     private String e;
 
     private String p;
+
+    private Long r;
 
     public UserDTO() {
     }
@@ -39,5 +43,21 @@ public class UserDTO {
 
     public void setP(String p) {
         this.p = p;
+    }
+
+    public Long getR() {
+        return r;
+    }
+
+    public void setR(Long r) {
+        this.r = r;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }
