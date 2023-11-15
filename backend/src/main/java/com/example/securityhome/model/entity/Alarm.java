@@ -28,6 +28,28 @@ public class Alarm {
     )
     private List<Sensor> sensors;
 
+    public Alarm(String name, String type, String reference, String location, String status) {
+        this.name = name;
+        this.type = type;
+        this.reference = reference;
+        this.location = location;
+        this.status = status;
+        this.user = user;
+        this.sensors = sensors;
+    }
+
+    public Alarm() {
+    }
+
+    public Alarm(long id, String name, String type, String reference, String location, String status) {
+        this.id = id;
+        this.name = name;
+        this.type = type;
+        this.reference = reference;
+        this.location = location;
+        this.status = status;
+    }
+
     public long getId() {
         return id;
     }
