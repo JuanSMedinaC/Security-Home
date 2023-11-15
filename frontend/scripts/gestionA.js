@@ -1,16 +1,10 @@
 const alarmCardContainer = document.getElementById('alarmCardContainer');
 
-if(window.localStorage.getItem('alarm') === null){
-    window.location.href = '/signin.html';
-} else {
-    var parse = JSON.parse(window.localStorage.getItem('alarm'));
-}
-
-console.log(parse);
-
+var parse = JSON.parse(window.localStorage.getItem('Authorization'));
 
 async function getalarms(){
-    let response = await fetch('https://7f93-200-3-193-78.ngrok-free.app/alarm/all',{
+    let auth = localStorage.getItem("Authorization");
+    let response = await fetch('http://localhost:8080/alarm/all',{
         method: 'GET',
         headers: {
             'Authorization':parse.id
@@ -24,6 +18,7 @@ async function getalarms(){
         json.forEach(alarm => {
         var card = new AlarmCard( alarm );
         console.log( card.render() );
+        console.log(alarmCardContainer);
         alarmCardContainer.appendChild(card.render());    
         });
     } else {
