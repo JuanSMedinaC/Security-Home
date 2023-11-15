@@ -63,7 +63,6 @@ async function verifyLogin(){
             'Content-Type':'application/json',
             'Authorization': auth
         },
-        body:data
     });
     if(response.status == 200){
         let responseData = await response.json();

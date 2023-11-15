@@ -144,4 +144,16 @@ public class UsersController {
         }
         return ResponseEntity.status(403).body("Couldn't be edited correctly");
     }
+
+    @DeleteMapping("user/delete")
+    public ResponseEntity<?> deleteAccount(@RequestHeader("Authorization") String authorization, @RequestBody Map<String, String> json){
+        if (auth.findByUUID(authorization) != null) {
+            if (repository.findById(authorization).orElse(null).getPassword().equals(json.get("pass"))) {
+                System.out.println(json.get("pass"));
+                repository.delete(repository.findById(authorization).orElse(null));
+                return ResponseEntity.status(200).body("Deleted correctly");
+            }
+        }
+        return ResponseEntity.status(403).body("Couldn't delete account");
+    }
 }

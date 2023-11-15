@@ -1,6 +1,4 @@
 const actPass = document.getElementById("actPass");
-const newPass = document.getElementById("newPass");
-const confNewPass = document.getElementById("confNewPass");
 const cancelButton = document.getElementById("cancelButton");
 const submitButton = document.getElementById("submitButton");
 const iPadd = "http://127.0.0.1:8080"
@@ -11,33 +9,27 @@ cancelButton.addEventListener("click",function(){
 
 submitButton.addEventListener("click",createObject)
 
-function createObject(){
-    let actualPass = actPass.value;
-    if(newPass.value==confNewPass.value){
-        var pass= newPass.value;
-    }else{
-        window.location.reload();
-    }
-    
-    let passwords = {
-        oldPass: actualPass,
-        newPass: pass
+function createObject(){  
+    let actualPass=actPass.value;
+    let password = {
+        pass: actualPass
     };
-    let json = JSON.stringify(passwords);
+    let json = JSON.stringify(password);
     console.log(json);
-    changePassword(json);
+    deleteAccount(json);
 }
 
-async function changePassword(data){
-    let user = localStorage.getItem("Authorization");
+async function deleteAccount(data){
+    let user=localStorage.getItem("Authorization");
     user = JSON.parse(user);
     try{
         var auth = user.id
     }catch (error){
         window.location.href="../VistaUsuario.html"
     }
-    await fetch(iPadd+'/user/edit/password', {
-        method: 'POST',
+    
+    await fetch(iPadd+'/user/delete', {
+        method: 'DELETE',
         headers: {
             'Content-Type':'application/json',
             'Authorization': auth
@@ -45,7 +37,8 @@ async function changePassword(data){
         body: data
     }).then(res => {
         if (res.status==200){
-            window.location.href="../Account.html"
+            window.location.href="../VistaUsuario.html"
+            localStorage.removeItem("Authorization");
         }
         return res.json();
     })
@@ -57,11 +50,18 @@ async function changePassword(data){
 
 
 window.addEventListener("load",verifyLogin)
+function home(){
+    window.location.href="Scripts/VistaUsuario.html"
+}
 
 async function verifyLogin(){
     let user=localStorage.getItem("Authorization");
     user = JSON.parse(user);
-    let auth = user.id
+    try{
+        var auth = user.id
+    }catch (error){
+        window.location.href="../VistaUsuario.html"
+    }
     //fetch
     let response = await fetch(iPadd+'/auth', {
         method: 'GET',
