@@ -23,7 +23,9 @@ function createObject(){
 }
 
 async function changeUserName(data){
-    let auth = localStorage.getItem("Authorization");
+    let user = localStorage.getItem("Authorization");
+    user = JSON.parse(user);
+    let auth = user.id;
     await fetch(iPadd+'/user/edit/name', {
         method: 'POST',
         headers: {
@@ -45,29 +47,28 @@ async function changeUserName(data){
 
 
 window.addEventListener("load",verifyLogin)
-function home(){
-    window.location.href="Scripts/VistaUsuario.html"
-}
 
 async function verifyLogin(){
-    let auth=localStorage.getItem("Authorization");
+    let user=localStorage.getItem("Authorization");
+    user = JSON.parse(user);
+    try{
+        var auth = user.id
+    }catch (error){
+        window.location.href="../VistaUsuario.html"
+    }
     //fetch
     let response = await fetch(iPadd+'/auth', {
         method: 'GET',
         headers: {
+            'Content-Type':'application/json',
             'Authorization': auth
-        }
-    }).then(res => {
-        console.log(res);
-        if (res.status!=200){
-            home();
-        }
-        return res.json();
-    })
-    .then(data => {
-            console.log(data)  
-        })  
-
-    
+        },
+    });
+    if(response.status == 200){
+        let responseData = await response.json();
+        console.log(responseData);
+    }else{
+        window.location.href="../VistaUsuario.html"
+    }     
     return true;
 }

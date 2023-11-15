@@ -4,13 +4,8 @@ const emailTextField = document.getElementById("emailInput");
 const passwordTextField = document.getElementById("passInput");
 const iPadd = "http://127.0.0.1:8080"
 
+window.addEventListener("load",verifyLogin)
 logInBtn.addEventListener("click", sendUser);
-
-function log(){
-    key=localStorage.getItem("Authorization");
-    console.log(key);
-    window.location.href="../Menu.html";
-}
 
 async function createUser(data){
     //fetch
@@ -19,18 +14,22 @@ async function createUser(data){
         headers: {
             'Content-Type':'application/json'
         },
-        body: data
-    }).then(res => {
-        //console.log(res);
-        if (res.status==200){
-            log();
+        body:data
+    });
+    if(response.status == 200){
+        let responseData = await response.json();
+        console.log(responseData);
+        window.localStorage.setItem("Authorization",JSON.stringify(responseData))
+        if(responseData.r==1){
+            window.location.href="../VistaAdministrador.html"
         }
-        return res.json();
-    })
-    .then(data => {
-            //console.log(data)
-            localStorage.setItem("Authorization",data.id)   
-        })    
+        else{
+            window.location.href="../Menu.html";
+        }
+        
+    }else{
+        alert(await response.text());
+    } 
 }
 
 async function sendUser(){
@@ -44,4 +43,28 @@ async function sendUser(){
     console.log(json);
     createUser(json);
     
+}
+
+async function verifyLogin(){
+    let user=localStorage.getItem("Authorization");
+    user = JSON.parse(user);
+    try{
+        var auth = user.id
+    }catch (error){
+        
+    }
+    //fetch
+    let response = await fetch(iPadd+'/auth', {
+        method: 'GET',
+        headers: {
+            'Content-Type':'application/json',
+            'Authorization': auth
+        },
+    });
+    if(response.status == 200){
+        let responseData = await response.json();
+        console.log(responseData);
+        window.location.href="../Menu.html"
+    }
+    return true;
 }
