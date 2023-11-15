@@ -4,6 +4,7 @@ const emailTextField = document.getElementById("emailInput");
 const passwordTextField = document.getElementById("passInput");
 const iPadd = "http://127.0.0.1:8080"
 
+window.addEventListener("load",verifyLogin)
 logInBtn.addEventListener("click", sendUser);
 
 async function createUser(data){
@@ -59,7 +60,6 @@ async function verifyLogin(){
             'Content-Type':'application/json',
             'Authorization': auth
         },
-        body:data
     });
     if(response.status == 200){
         let responseData = await response.json();
