@@ -1,21 +1,16 @@
-const usernameInput = document.getElementById('usernameInput');
-const emailInput = document.getElementById('emailInput');
-const passInput = document.getElementById('passInput');
-const passAgainInput = document.getElementById('passAgainInput');
-const submitBtn = document.getElementById('submitBtn');
-const userCardContainer = document.getElementById('userCardContainer');
+const alarmCardContainer = document.getElementById('alarmCardContainer');
 
-if(window.localStorage.getItem('user') === null){
+if(window.localStorage.getItem('alarm') === null){
     window.location.href = '/signin.html';
 } else {
-    var parse = JSON.parse(window.localStorage.getItem('user'));
+    var parse = JSON.parse(window.localStorage.getItem('alarm'));
 }
 
 console.log(parse);
 
 
-async function getUsers(){
-    let response = await fetch('https://7f93-200-3-193-78.ngrok-free.app/user/all',{
+async function getalarms(){
+    let response = await fetch('https://7f93-200-3-193-78.ngrok-free.app/alarm/all',{
         method: 'GET',
         headers: {
             'Authorization':parse.id
@@ -26,14 +21,14 @@ async function getUsers(){
         let json = await response.json();
         console.log(json);
 
-        json.forEach(user => {
-        var card = new UserCard( user );
+        json.forEach(alarm => {
+        var card = new AlarmCard( alarm );
         console.log( card.render() );
-        userCardContainer.appendChild(card.render());    
+        alarmCardContainer.appendChild(card.render());    
         });
     } else {
         alert(await response.text());
     }
 }
 
-getUsers();
+getalarms();
