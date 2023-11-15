@@ -22,7 +22,7 @@ public class CameraController {
         this.camRe = cameraRepository;
     }
 
-    @PostMapping("add/camera")
+    @PostMapping("AddCamera")
     public ResponseEntity<?> addCamera(@RequestHeader("Authorization") String authorization, @RequestBody CameraDTO cam) {
         Camera camEntity = new Camera(cam.getName(), cam.getDescription(), cam.getStatus());
         if (auth.findByUUID(authorization) != null) {
