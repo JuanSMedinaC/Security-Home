@@ -6,12 +6,6 @@ const iPadd = "http://127.0.0.1:8080"
 
 logInBtn.addEventListener("click", sendUser);
 
-function log(){
-    key=localStorage.getItem("Authorization");
-    console.log(key);
-    window.location.href="../Menu.html";
-}
-
 async function createUser(data){
     //fetch
     let response = await fetch(iPadd+'/login', {
@@ -19,18 +13,16 @@ async function createUser(data){
         headers: {
             'Content-Type':'application/json'
         },
-        body: data
-    }).then(res => {
-        //console.log(res);
-        if (res.status==200){
-            log();
-        }
-        return res.json();
-    })
-    .then(data => {
-            //console.log(data)
-            localStorage.setItem("Authorization",data.id)   
-        })    
+        body:data
+    });
+    if(response.status == 200){
+        let responseData = await response.json();
+        console.log(responseData);
+        window.localStorage.setItem("Authorization",JSON.stringify(responseData))
+        window.location.href="../Menu.html";
+    }else{
+        alert(await response.text());
+    } 
 }
 
 async function sendUser(){

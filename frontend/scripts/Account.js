@@ -3,37 +3,38 @@ const mailLabel = document.getElementById("mailLabel");
 const passwordButton = document.getElementById("passwordButton");
 const iPadd = "http://127.0.0.1:8080"
 
-passwordButton.addEventListener("click",function(){
-    window.location.href="../updatePassword.html";
-})
+
 
 
 window.addEventListener("load",verifyLogin)
-function home(){
-    window.location.href="Scripts/VistaUsuario.html"
-}
+
 
 async function verifyLogin(){
-    let auth=localStorage.getItem("Authorization");
+    let user=localStorage.getItem("Authorization");
+    user = JSON.parse(user);
+    try{
+        var auth = user.id
+    }catch (error){
+        window.location.href="../VistaUsuario.html"
+    }
+    
+    
     //fetch
     let response = await fetch(iPadd+'/auth', {
         method: 'GET',
         headers: {
+            'Content-Type':'application/json',
             'Authorization': auth
-        }
-    }).then(res => {
-        console.log(res);
-        if (res.status!=200){
-            home();
-        }
-        return res.json();
-    })
-    .then(data => {
-            console.log(data)  
-            userNameLabel.textContent=data.n
-            mailLabel.textContent=data.e
-        })  
-
-    
+        },
+    });
+    if(response.status == 200){
+        console.log(response)
+        let responseData = await response.json();
+        userNameLabel.textContent=responseData.n
+        mailLabel.textContent=responseData.e
+        console.log(responseData);
+    }else{
+        window.location.href="../VistaUsuario.html"
+    } 
     return true;
 }

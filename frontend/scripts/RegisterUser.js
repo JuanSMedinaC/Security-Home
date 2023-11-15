@@ -5,6 +5,8 @@ const passAgainInput = document.getElementById('passAgainInput');
 const singUpBtn = document.getElementById('SingUpBtn');
 const iPadd = "http://127.0.0.1:8080";
 
+singUpBtn.addEventListener('click', sendUser);
+
 async function createUser(data){ 
     let auth = localStorage.getItem("Authorization");
     let response = await fetch(iPadd+'/user/register',{
@@ -42,4 +44,35 @@ async function sendUser(){
     await createUser(json); 
 }
 
-singUpBtn.addEventListener('click', sendUser);
+window.addEventListener("load",verifyLogin)
+
+async function verifyLogin(){
+    let user=localStorage.getItem("Authorization");
+    user = JSON.parse(user);
+    try{
+        var auth = user.id
+    }catch (error){
+        window.location.href="../VistaUsuario.html"
+    }
+    if (user.r===2){
+        window.location.href="../Menu.html"
+    }
+    //fetch
+    let response = await fetch(iPadd+'/auth', {
+        method: 'GET',
+        headers: {
+            'Content-Type':'application/json',
+            'Authorization': auth
+        },
+        body:data
+    });
+    if(response.status == 200){
+        let responseData = await response.json();
+        console.log(responseData);
+    }else{
+        window.location.href="../Menu.html"
+    } 
+    
+    return true;
+}
+
