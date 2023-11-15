@@ -51,7 +51,7 @@ async function verifyLogin(){
     try{
         var auth = user.id
     }catch (error){
-        window.location.href="../VistaUsuario.html"
+        
     }
     //fetch
     let response = await fetch(iPadd+'/auth', {
