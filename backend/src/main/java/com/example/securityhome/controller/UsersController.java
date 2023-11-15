@@ -149,6 +149,7 @@ public class UsersController {
     public ResponseEntity<?> deleteAccount(@RequestHeader("Authorization") String authorization, @RequestBody Map<String, String> json){
         if (auth.findByUUID(authorization) != null) {
             if (repository.findById(authorization).orElse(null).getPassword().equals(json.get("pass"))) {
+                System.out.println(json.get("pass"));
                 repository.delete(repository.findById(authorization).orElse(null));
                 return ResponseEntity.status(200).body("Deleted correctly");
             }
