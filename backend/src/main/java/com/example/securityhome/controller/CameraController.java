@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin(maxAge = 3600)
 public class CameraController {
     @Autowired
     private Authentication auth;
@@ -28,7 +29,7 @@ public class CameraController {
         if (auth.findByUUID(authorization) != null) {
             try {
                 if (camRe.getCameraByName(cam.getName()).get(0) != null) {
-                    return ResponseEntity.status(409).body("camera was already created");
+                    return ResponseEntity.status(409).body("c");
                 }
             } catch (Exception e) {
                 camRe.save(camEntity);

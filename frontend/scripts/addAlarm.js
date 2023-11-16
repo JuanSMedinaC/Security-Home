@@ -8,7 +8,7 @@ const addBtn = document.getElementById('addBtn');
 addBtn.addEventListener('click', sendAlarm);
 var parse = JSON.parse(window.localStorage.getItem('Authorization'));
 
-async function createAlarm(data){ 
+async function createAlarm(data){
     let auth = localStorage.getItem("Authorization");
     let response = await fetch('http://127.0.0.1:8080/alarm/add',{
         method: 'POST',
@@ -29,9 +29,6 @@ async function sendAlarm(){
     let reference = referenceE.value;
     let location = locationE.value;
     let status = statusE.value;
-
-    console.log(name);
-
     let alarmDTO = {
         name : name, 
         type : type, 
