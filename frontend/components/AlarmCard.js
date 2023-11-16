@@ -22,7 +22,7 @@ class AlarmCard {
 
         let description = document.createElement('p');
         description.classList.add('card-text');
-        description.innerHTML = (this.alarm.location + " " + this.alarm.type);
+        description.innerHTML = ("Lugar: " +this.alarm.location + " Tipo:" + this.alarm.type +" Estado:" +this.alarm.status);
 
         let button = document.createElement('a');
         button.classList.add('btn');
@@ -59,7 +59,7 @@ class AlarmCard {
         });
 
         if(response.status === 200){
-            alert("Alarm correctly updated");
+            window.location.href="../gestionA.html"
         }else{
             switch (response.status) {
                 case 404:
