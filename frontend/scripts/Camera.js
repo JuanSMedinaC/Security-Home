@@ -24,7 +24,7 @@ EditCamBtn.addEventListener("click",function(){
 })
 
 HistorialBtn.addEventListener("click",function(){
-    window.location.href="/Historial.html";
+    window.location.href="/historial.html";
 })
 
 GestAlarmBtn.addEventListener("click",function(){
