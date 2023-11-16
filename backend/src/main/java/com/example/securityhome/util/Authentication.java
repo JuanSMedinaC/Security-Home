@@ -1,5 +1,6 @@
 package com.example.securityhome.util;
 
+import com.example.securityhome.model.Repository.SensorRepository;
 import com.example.securityhome.model.Repository.UserRepository;
 import com.example.securityhome.model.entity.User;
 import com.example.securityhome.model.entitydto.UserDTO;
@@ -12,10 +13,12 @@ public class Authentication {
 
     private UserRepository repository;
 
+
     @Autowired
     public void setRepository(UserRepository repository){
         this.repository = repository;
     }
+
 
 
     public User isValid(UserLoginDTO user){

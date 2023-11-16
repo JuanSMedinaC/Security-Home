@@ -1,0 +1,128 @@
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+.Banner {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 35vw;
+    background-color: rgb(122, 160, 235);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+#backBTN {
+    position: relative;
+    top: 80px;
+    left: 40%;
+    width: 110px;
+    color: #000D27;
+    background-color: #D4E3FF;
+    border: 1px solid #000d2739;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.FormContainer {
+    background-color: #ECEDF2;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 35vw; /* Ancho del contenedor azul en unidades de vista relativas */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.Container {
+    background-color: #D8DBE0;
+    padding: 10px;
+    width: 350px;
+    margin: auto;
+    display: block;
+    border: 1px solid #000d2754;
+    border-radius: 30px;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background-color: #E9EBEF;
+    position: relative;
+    top: 40px;
+    border: 1px solid #32374f30;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+#logo {
+    max-width: calc(100% - 8px); /* Reducimos 4 píxeles en cada lado */
+    max-height: calc(100% - 8px); /* Reducimos 4 píxeles en cada lado */
+    margin: -4px; /* Agregamos un margen negativo para compensar el tamaño reducido */
+  }
+
+
+
+.Typesensor {
+    position: relative;
+    top: 70px;
+    width: 280px;  
+}
+
+.Ubication {
+    position: relative;
+    top: 70px;
+    width: 280px;
+}
+
+.Reference{
+    position: relative;
+    top: 70px;
+    width: 280px;
+}
+
+
+
+#AddsensorBTN{
+    position: relative;
+    top: 80px;
+    width: 110px;
+    color: #000D27;
+    background-color: #D4E3FF;
+    border: 1px solid #000d2739;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.textoLink{
+    position: relative;
+    top: 80px;
+    width: 280px;
+    font-size: 10px;
+    color: #6D6D6D;
+    left: 99px;
+}
+.link{
+    text-decoration: none;
+    font-size: 10px;
+    color: #6D6D6D;
+}
+.link:hover {
+    text-decoration: underline;
+  }
+
+
+
+
+
+
