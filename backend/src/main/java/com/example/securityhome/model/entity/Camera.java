@@ -6,9 +6,25 @@ import java.util.List;
 @Entity
 @Table(name = "cameras")
 public class Camera {
+
+    public Camera(){
+
+    }
+    public Camera(Long id, String name, String description, String status) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.status = status;
+    }
+
+    public Camera(String name, String description, String status) {
+        this.name = name;
+        this.description = description;
+        this.status = status;
+    }
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
     private String name;
     private String description;
     private String status;
@@ -36,11 +52,11 @@ public class Camera {
         this.photos = photos;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
