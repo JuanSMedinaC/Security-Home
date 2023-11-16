@@ -53,4 +53,16 @@ public class CameraController {
             }
         }return ResponseEntity.status(403).body("You do not have authorization");
     }
+
+    @GetMapping("camerasAll")
+    public ResponseEntity<?> listAllCameras(@RequestHeader("Authorization") String authorization) {
+        if (auth.findByUUID(authorization) != null) {
+            try {
+                var cameras = camRe.findAll();
+                return ResponseEntity.status(200).body(cameras);
+            } catch (Exception e) {
+                return ResponseEntity.status(404).body("cameras not found");
+            }
+        }return ResponseEntity.status(403).body("You do not have authorization");
+    }
 }

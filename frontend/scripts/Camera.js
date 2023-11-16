@@ -28,9 +28,9 @@ HistorialBtn.addEventListener("click",function(){
 })
 
 GestAlarmBtn.addEventListener("click",function(){
-    window.location.href="/GestionAlarmas.html";
+    window.location.href="/gestionA.html";
 })
 
 GestSenBtn.addEventListener("click",function(){
-    window.location.href="/GestionSensores.html";
+    window.location.href="/gestionS.html";
 })
