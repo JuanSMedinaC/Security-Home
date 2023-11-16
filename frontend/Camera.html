@@ -92,9 +92,28 @@
       left:39%;
       position:absolute;
     }
+
+    .exit{
+    height:10%;
+    width:5.5%;
+    left:5%;
+    top:80%;
+    position:absolute;
+  }
     
 </style>
 <body style="background-color: rgb(0, 0, 0);">
+
+  <img id="exit" class="exit" src="/components/exit2.png">
+
+  <script>
+    const imagenExit = document.getElementById("exit");
+  
+    // Agrega un evento de clic a la imagen
+    imagenExit.addEventListener("click", function() {
+      window.location.href = "Menu.html";
+    });
+</script>
 
     <div class = "main-container">
       <header>

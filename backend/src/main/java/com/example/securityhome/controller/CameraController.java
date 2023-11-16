@@ -38,4 +38,19 @@ public class CameraController {
         }
             return ResponseEntity.status(403).body("Couldn't be added a camera correctly");
     }
+
+    @DeleteMapping("deleteCamera")
+    public ResponseEntity<?> deleteCamera(@RequestHeader("Authorization") String authorization, @RequestBody CameraDTO cam) {
+        if (auth.findByUUID(authorization) != null) {
+            try {
+                var camAux = camRe.getCameraByName(cam.getName()).get(0);
+                if (camAux != null) {
+                    camRe.delete(camAux);
+                    return ResponseEntity.status(200).body("camera correctly deleted");
+                }
+            } catch (Exception e) {
+                return ResponseEntity.status(404).body("camera not found");
+            }
+        }return ResponseEntity.status(403).body("You do not have authorization");
+    }
 }
