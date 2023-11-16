@@ -28,7 +28,7 @@ public class Authentication {
                 return entityUser.get(0);
             }
             return null;
-        }catch (NullPointerException e) {
+        }catch (Exception e) {
             return null;
         }
     }

@@ -11,7 +11,8 @@ public class Alert {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String description;
-    private Date date;
+    private String location;
+    private long date;
 
     @ManyToOne
     @JoinColumn(name = "sensor_id")
@@ -33,19 +34,27 @@ public class Alert {
         this.description = description;
     }
 
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
     public Sensor getSensor() {
         return sensor;
     }
 
     public void setSensor(Sensor sensor) {
         this.sensor = sensor;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public long getDate() {
+        return date;
+    }
+
+    public void setDate(long date) {
+        this.date = date;
     }
 }
