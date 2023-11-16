@@ -23,11 +23,18 @@ class AlertCard {
         let description = document.createElement('p');
         description.classList.add('card-text');
         let fecha = new Date(this.alert.date)
-        description.innerHTML = (this.alert.description + " " +fecha);
+        description.innerHTML = (fecha);
+
+        let button = document.createElement('a');
+        button.classList.add('btn');
+        button.classList.add('btn-primary');
+        button.setAttribute('href', '#');
+        button.innerHTML = 'Detalles';
 
 
         cardbody.appendChild(title);
         cardbody.appendChild(description);
+        cardbody.appendChild(button);
         container.appendChild(img);
         container.appendChild(cardbody);
 
