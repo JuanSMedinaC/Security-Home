@@ -7,7 +7,7 @@ async function getAlerts(){
     let response = await fetch('http://localhost:8080/alert/all',{
         method: 'GET',
         headers: {
-            'Authorization':"123"
+            'Authorization':parse.id
         },
     });
 
@@ -17,7 +17,7 @@ async function getAlerts(){
 
         json.forEach(alert => {
         var card = new AlertCard( alert );
-        console.log( card.render() );
+        console.log(card.render() );
         console.log(alertCardContainer);
         alertCardContainer.appendChild(card.render());    
         });
