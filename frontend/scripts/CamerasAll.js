@@ -1,4 +1,6 @@
 const cameraCardContainer = document.getElementById('cameraCardContainer');
+const nameE= document.getElementById('name');
+const searchBtn = document.getElementById('searchBtn');
 
 var parse = JSON.parse(window.localStorage.getItem('Authorization'));
 
@@ -29,3 +31,49 @@ async function getCameras(){
 }
 
 getCameras();
+
+searchBtn.addEventListener('click', createObject);
+
+function createObject(event){
+    console.log("aqui");
+    event.preventDefault();
+    let name = nameE.value;
+    if (name === '') {
+        alert("Please complete all fields");
+        return;
+    }else{
+        let cameraDTO = {
+            name: name
+        };
+        let json = JSON.stringify(cameraDTO);
+        console.log(json);
+        searchCamera(json);
+    }
+}
+
+async function searchCamera(data){
+
+    let response = await fetch('http://localhost:8080/search/camera', {
+        method: 'POST',
+        headers: {
+            'Content-Type':'application/json',
+            'Authorization' : parse.id
+        }, 
+        body: data,
+        redirect: 'follow'
+    });
+    
+    if(response.status === 200){
+        let cam = await response.json();
+        console.log(cam);
+        
+        var card = new CameraCard(cam);
+        console.log( card.render() );
+        console.log(cameraCardContainer);
+        cameraCardContainer.innerHTML = '';
+        cameraCardContainer.appendChild(card.render());    
+        
+    } else {
+        alert(await response.text());
+    }
+}
