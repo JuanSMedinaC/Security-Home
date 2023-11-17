@@ -1,10 +1,5 @@
 const cameraCardContainer = document.getElementById('cameraCardContainer');
-const imagenExit = document.getElementById("exit");
 
-imagenExit.addEventListener("click", function() {
-  window.location.href = "VistaUsuario.html";
-  window.localStorage.removeItem("Authorization");
-});
 const nameE= document.getElementById('name');
 const searchBtn = document.getElementById('searchBtn');
 
