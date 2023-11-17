@@ -50,6 +50,11 @@ class AlertCard {
 
         buttonE.addEventListener('click', this.sendAction.bind(this))
 
+        container.style.marginLeft = '400px';
+        container.style.height = "400px";
+        container.style.width = "300px";
+        container.style.marginTop = '15px';
+
         return container;
     }
 
