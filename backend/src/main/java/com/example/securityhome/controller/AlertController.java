@@ -63,15 +63,15 @@ public class AlertController {
     }
 
     @PostMapping("alert/sensor/add")
-    public ResponseEntity<?> addSensorAlert(@RequestHeader("Authorization") Long id, AlertDTO alert){
+    public ResponseEntity<?> addSensorAlert(@RequestHeader("Authorization") Long id){
         if (sensorRepository.findById(id).orElse(null) != null) {
             Alert alertEntity = new Alert();
             alertEntity.setSensor(sensorRepository.findById(id).orElse(null));
             alertEntity.setDate(System.currentTimeMillis());
-            alertEntity.setDescription("El Dispositivo "+ sensorRepository.findById(id).orElse(null).getName()+ " en el lugar "+ sensorRepository.findById(id).orElse(null).getLocation()+ " ha detectado un movimiento.");
+            alertEntity.setDescription("El Dispositivo "+ sensorRepository.findById(id).orElse(null).getName()+ " en el lugar "+ sensorRepository.findById(id).orElse(null).getLocation()+ " ha detectado un movimiento y ha activado la alarma.");
             alertEntity.setLocation(sensorRepository.findById(id).orElse(null).getLocation());
             repository.save(alertEntity);
-            return ResponseEntity.status(200).body(alertEntity);
+            return ResponseEntity.status(200).body("Alerta notificada satisfactoriamente");
         } else {
             return ResponseEntity.status(400).body("No autorizado");
         }
@@ -79,8 +79,6 @@ public class AlertController {
 
     @PostMapping("reading/sensor/add")
     public ResponseEntity<?> addSensorReading(@RequestHeader("Authorization") Long id, @RequestBody SensorReadingDTO sensorReadingDTO){
-        System.out.println(sensorReadingDTO.getSensorValues());
-        System.out.println(sensorReadingDTO.getUnits());
         if (sensorRepository.findById(id).orElse(null) != null) {
             SensorReading sensorReading = new SensorReading();
             sensorReading.setUnits(sensorReadingDTO.getUnits());
