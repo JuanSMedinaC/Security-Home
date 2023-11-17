@@ -31,6 +31,8 @@ class AlertCard {
         button.setAttribute('href', '#');
         button.innerHTML = 'Detalles';
 
+        button.addEventListener('click', this.action.bind(this))
+
 
         cardbody.appendChild(title);
         cardbody.appendChild(description);
@@ -44,5 +46,8 @@ class AlertCard {
         return container;
     }
 
-
+    action(event) {
+        event.preventDefault();
+        alert(this.alert.description);
+    }
 }

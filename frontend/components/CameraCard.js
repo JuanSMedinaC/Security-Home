@@ -46,8 +46,9 @@ class CameraCard {
 
         button.addEventListener('click', this.sendCamera.bind(this))
 
-        container.style.marginLeft = '500px';
+        container.style.marginLeft = '300px';
         container.style.backgroundColor = '#CDCDCD';
+        container.style.marginTop = '15px';
 
         // Devolver el contenedor principal
         return container;
