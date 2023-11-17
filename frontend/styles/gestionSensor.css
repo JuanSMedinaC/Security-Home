@@ -1,0 +1,77 @@
+.body{
+    position: relative;
+    display: flex;
+}
+
+.navbar {
+    background-color: rgb(0, 0, 0); /* Fondo negro */
+    border-bottom: 2px solid blue; /* Línea inferior azul */
+}
+
+
+#HistorialBtn{
+  position: fixed;
+  top: 23.5%;
+  left: 80.5%;
+  width: 15%;
+  height: 8%;
+  background-color: #545454;
+  color: rgb(255, 255, 255);
+}
+#GestAlarmBtn{
+  position: fixed;
+  top: 33.5%;
+  left: 80.5%;
+  width: 15%;
+  height: 8%;
+  background-color: #545454;
+  color: rgb(255, 255, 255);
+}
+#CameraBtn{
+  position: fixed;
+  top: 43.5%;
+  left: 80.5%;
+  width: 15%;
+  height: 8%;
+  background-color: #545454;
+  color: rgb(255, 255, 255);
+}
+
+#AddSensorBtn{
+    position: fixed;
+    top: 53.5%;
+    left: 80.5%;
+    width: 15%;
+    height: 8%;
+    background-color: #545454;
+    color: rgb(255, 255, 255);
+}
+
+
+#DeleteSensorBtn{
+  position: fixed;
+  top: 63.5%;
+  left: 80.5%;
+  width: 15%;
+  height: 8%;
+  background-color: #545454;
+  color: rgb(255, 255, 255);
+}
+
+
+.line1{
+  width:38.3%;
+  transform:rotate(-90deg);
+  border:1px solid blue;
+  top:58%;
+  left:39%;
+  position:absolute;
+}
+
+.exit{
+height:10%;
+width:5.5%;
+left:5%;
+top:80%;
+position:absolute;
+}
