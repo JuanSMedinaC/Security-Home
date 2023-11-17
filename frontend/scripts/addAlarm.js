@@ -18,6 +18,22 @@ async function createAlarm(data){
         },
         body:data
     });
+
+    if(response.status === 200){
+        alert("Alarm successfully added");
+    }else{
+        switch (response.status) {
+            case 409:
+                alert("Alarm was already created");
+                break;
+            case 403:
+                alert("Couldn't be added a alarm correctly");
+                break;
+            default:
+                alert("Error");
+                break;
+        }
+    }
     
     let json = await response.json(); 
     console.log(json);

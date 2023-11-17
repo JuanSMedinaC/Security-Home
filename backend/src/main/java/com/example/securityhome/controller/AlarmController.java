@@ -42,7 +42,7 @@ public class AlarmController {
     }
 
     @PostMapping("alarm/add")
-    public ResponseEntity<?> addAlert(@RequestHeader("Authorization") String authorization, @org.jetbrains.annotations.NotNull @RequestBody AlarmDTO alarm) {
+    public ResponseEntity<?> addAlarm(@RequestHeader("Authorization") String authorization, @org.jetbrains.annotations.NotNull @RequestBody AlarmDTO alarm) {
         Alarm alarmEntity = new Alarm(alarm.getName(), alarm.getType(), alarm.getReference(), alarm.getLocation(), alarm.getStatus());
         if (auth.findByUUID(authorization) != null) {
 

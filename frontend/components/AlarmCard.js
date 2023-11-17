@@ -22,13 +22,13 @@ class AlarmCard {
 
         let description = document.createElement('p');
         description.classList.add('card-text');
-        description.innerHTML = (this.alarm.location + " " + this.alarm.type);
+        description.innerHTML = ("Lugar: " +this.alarm.location + " Tipo:" + this.alarm.type +" Estado:" +this.alarm.status);
 
         let button = document.createElement('a');
         button.classList.add('btn');
         button.classList.add('btn-primary');
         button.setAttribute('href', '#');
-        button.innerHTML = 'Change Status';
+        button.innerHTML = 'Cambiar estado';
 
 
         cardbody.appendChild(title);
@@ -57,6 +57,22 @@ class AlarmCard {
             body: data,
             redirect: 'follow'
         });
+
+        if(response.status === 200){
+            window.location.href="../gestionA.html"
+        }else{
+            switch (response.status) {
+                case 404:
+                    alert("Alarm not found");
+                    break;
+                case 403:
+                    alert("You do not have authorization");
+                    break;
+                default:
+                    alert("Error");
+                    break;
+            }
+        }
             
     }
 
