@@ -9,20 +9,20 @@ import java.util.Date;
 public class Alert {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
     private String description;
     private String location;
-    private long date;
+    private Long date;
 
     @ManyToOne
     @JoinColumn(name = "sensor_id")
     Sensor sensor;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
