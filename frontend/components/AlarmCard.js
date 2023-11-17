@@ -44,6 +44,7 @@ class AlarmCard {
         button.addEventListener('click', this.sendAlarm.bind(this))
 
         return container;
+
     }
 
     async changeStatus(data) {
