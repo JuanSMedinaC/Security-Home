@@ -20,6 +20,7 @@ async function createAlarm(data){
     });
 
     if(response.status === 200){
+        window.location.href="../gestionA.html"
         alert("Alarm successfully added");
     }else{
         switch (response.status) {
