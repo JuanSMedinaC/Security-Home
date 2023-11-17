@@ -34,6 +34,7 @@ async function deleteCamera(data){
     if(response.status === 200){
         window.location.href="../Camera.html"
         alert("camera correctly deleted");
+        window.location.href = "../Camera.html";
     }else{
         switch (response.status) {
             case 404:
@@ -51,4 +52,3 @@ async function deleteCamera(data){
     let json = await response.json(); 
     console.log(json);
 }
-

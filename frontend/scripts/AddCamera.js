@@ -19,8 +19,8 @@ async function createCamera(data){
     });
     
     if(response.status === 200){
-        alert("camera correctly added");
-        window.location.href="../Camera.html"
+        alert("camera successfully added");
+        window.location.href = "../Camera.html";
     }else{
         switch (response.status) {
             case 409:
