@@ -27,7 +27,7 @@ class SensorCard {
         // Crear el párrafo de la tarjeta
         let cardText = document.createElement('p');
         cardText.classList.add('card-text');
-        cardText.innerHTML = ("Location: "+this.sensor.location +" . Estado: "+this.cam.status+ ". ");
+        cardText.innerHTML = ("Location: "+this.sensor.location +" . Estado: "+this.sensor.status+ ". ");
 
         let button = document.createElement('a');
         button.classList.add('btn');
@@ -87,7 +87,8 @@ class SensorCard {
         let sensorDTO = {
             name: this.sensor.name,
             location: this.sensor.location,
-            status: this.sensor.status
+            status: this.sensor.status,
+            reference: this.sensor.reference
         };
         let json = JSON.stringify(sensorDTO);
         console.log(json);

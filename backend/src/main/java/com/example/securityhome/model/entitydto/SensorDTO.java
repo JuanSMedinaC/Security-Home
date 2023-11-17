@@ -16,6 +16,9 @@ public class SensorDTO {
         this.name = name;
         this.type = type;
         this.reference = reference;
+        this.location = location;
+        this.status = status;
+    }
 
     public SensorDTO() {
     }
