@@ -4,49 +4,58 @@ class CameraCard {
         this.cam = cam;
     }
     render() {
-        let container = document.createElement('div'); //<div></div>
+        let container = document.createElement('div');
         container.classList.add('card');
-        container.classList.add('cameraCard');
+        container.classList.add('border-primary');
+        container.classList.add('mb-3');
+        container.style.maxWidth = '24rem';
 
-        let img = document.createElement('img');
-        img.classList.add('card-img-top');
-        img.setAttribute('src', 'https://img.freepik.com/premium-photo/abstract-background-images-wallpaper-ai-generated_643360-61851.jpg');
+        // Crear el encabezado de la tarjeta
+        let cardHeader = document.createElement('div');
+        cardHeader.classList.add('card-header');
+        cardHeader.innerHTML = ("Nombre: "+this.cam.name);
 
-        let cardbody = document.createElement('div');
-        cardbody.classList.add('card-body');
+        // Crear el cuerpo de la tarjeta
+        let cardBody = document.createElement('div');
+        cardBody.classList.add('card-body');
+        cardBody.classList.add('text-primary');
 
-        let title = document.createElement('h5');
-        title.classList.add('card-title');
+        // Crear el título de la tarjeta
+        let cardTitle = document.createElement('h5');
+        cardTitle.classList.add('card-title');
 
-        let description = document.createElement('p');
-        description.classList.add('card-text');
-        description.innerHTML = (this.alarm.location + " " + this.alarm.type);
+        // Crear el párrafo de la tarjeta
+        let cardText = document.createElement('p');
+        cardText.classList.add('card-text');
+        cardText.innerHTML = ("Descripción: "+this.cam.description + ". Estado: "+this.cam.status + ".");
 
         let button = document.createElement('a');
         button.classList.add('btn');
         button.classList.add('btn-primary');
         button.setAttribute('href', '#');
-        button.innerHTML = 'Change Status';
+        button.innerHTML = 'Cambiar estado';
 
+        // Agregar elementos al cuerpo de la tarjeta
+        cardBody.appendChild(cardTitle);
+        cardBody.appendChild(cardText);
+        cardBody.appendChild(button);
 
-        cardbody.appendChild(title);
-        cardbody.appendChild(description);
-        cardbody.appendChild(button);
-        container.appendChild(img);
-        container.appendChild(cardbody);
+        // Agregar elementos al contenedor principal
+        container.appendChild(cardHeader);
+        container.appendChild(cardBody);
 
-        //2. Poner informacion del componente
-        title.innerHTML = this.alarm.name;
+        button.addEventListener('click', this.sendCamera.bind(this))
 
-        //3. Acciones del componente
-        button.addEventListener('click', this.sendAlarm.bind(this))
+        container.style.marginLeft = '500px';
+        container.style.backgroundColor = '#CDCDCD';
 
+        // Devolver el contenedor principal
         return container;
     }
 
     async changeStatus(data) {
         var parse = JSON.parse(window.localStorage.getItem('Authorization'));
-        let response = await fetch("http://localhost:8080/alarm/update", {
+        let response = await fetch("http://localhost:8080/camera/update/status", {
             method: 'PUT',
             headers: {
                 "Authorization": parse.id,
@@ -55,23 +64,33 @@ class CameraCard {
             body: data,
             redirect: 'follow'
         });
-            
+
+        if(response.status === 200){
+            window.location.href="../CamerasAll.html"
+        }else{
+            switch (response.status) {
+                case 404:
+                    alert("Camera not found");
+                    break;
+                case 403:
+                    alert("You do not have authorization");
+                    break;
+                default:
+                    alert("Error");
+                    break;
+            }
+        }     
     }
 
-    async sendAlarm(event) {
+    async sendCamera(event) {
         event.preventDefault();
-        let alarmDTO = {
-            name: this.alarm.name,
-            type: this.alarm.type,
-            reference: this.alarm.reference,
-            location: this.alarm.location,
-            status: this.alarm.status
+        let cameraDTO = {
+            name: this.cam.name,
+            description: this.cam.description,
+            status: this.cam.status
         };
-        let json = JSON.stringify(alarmDTO);
+        let json = JSON.stringify(cameraDTO);
         console.log(json);
         this.changeStatus(json);
-
     }
-
-
 }

@@ -7,6 +7,8 @@ public class AlertDTO {
     private String location;
     private Long date;
 
+    private Long id;
+
     public AlertDTO(String description, String location, Long date) {
         this.description = description;
         this.location = location;

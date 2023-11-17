@@ -4,6 +4,7 @@ package com.example.securityhome.controller;
 import com.example.securityhome.model.Repository.CameraRepository;
 import com.example.securityhome.model.entity.Camera;
 import com.example.securityhome.model.entity.User;
+import com.example.securityhome.model.entitydto.AlarmDTO;
 import com.example.securityhome.model.entitydto.CameraDTO;
 import com.example.securityhome.util.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,5 +65,28 @@ public class CameraController {
                 return ResponseEntity.status(404).body("cameras not found");
             }
         }return ResponseEntity.status(403).body("You do not have authorization");
+    }
+
+    @PutMapping("camera/update/status")
+    public ResponseEntity<?> updateStatus(@RequestHeader("Authorization") String authorization, @RequestBody CameraDTO cam) {
+        if (auth.findByUUID(authorization) != null) {
+            try {
+                var camEdit = camRe.getCameraByName(cam.getName()).get(0);
+                if (camEdit != null) {
+                    if (camEdit.getStatus().equalsIgnoreCase("Inactivo")) {
+                        camEdit.setStatus("Activo");
+                        camRe.save(camEdit);
+                        return ResponseEntity.status(200).body(camEdit);
+                    } else if (camEdit.getStatus().equalsIgnoreCase("Activo")) {
+                        camEdit.setStatus("Inactivo");
+                        camRe.save(camEdit);
+                        return ResponseEntity.status(200).body(camEdit);
+                    }
+                }
+            } catch (Exception e) {
+                return ResponseEntity.status(404).body("camera not found");
+            }
+        }
+        return ResponseEntity.status(403).body("You do not have authorization");
     }
 }
