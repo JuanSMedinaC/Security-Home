@@ -32,6 +32,7 @@ async function deleteCamera(data){
     });
     
     if(response.status === 200){
+        window.location.href="../Camera.html"
         alert("camera correctly deleted");
         window.location.href = "../Camera.html";
     }else{
