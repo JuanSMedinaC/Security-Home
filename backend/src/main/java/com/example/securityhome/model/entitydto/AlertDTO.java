@@ -9,10 +9,28 @@ public class AlertDTO {
 
     private Long id;
 
+    public AlertDTO() {
+
+    }
+
     public AlertDTO(String description, String location, Long date) {
         this.description = description;
         this.location = location;
         this.date = date;
+    }
+    public AlertDTO(String description, String location, Long date, Long id) {
+        this.description = description;
+        this.location = location;
+        this.date = date;
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getDescription() {

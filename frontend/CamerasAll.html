@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <link rel = "stylesheet" href = "/styles/style_base.css"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Información de cámaras</title>
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" >
@@ -94,6 +94,37 @@
       position:absolute;
     }
 
+    .filtro{
+      height:5%;
+      width:3%;
+      left:60%;
+      top:26%;
+      position:absolute;
+    }
+
+    #name{
+    position:absolute;
+    top: 25%;
+    left: 63%;
+    height: 7%;
+    width: 30%;
+    border-radius: 40px;
+    padding: 10px;
+  }
+  #name::placeholder{
+    vertical-align: middle; 
+    line-height: 40px;
+  }
+
+  #searchBtn{
+    position:fixed;
+    top: 35%;
+    left: 73%;
+    height: 7%;
+    width: 10%;
+    background-color: #4471E4;
+    color: aliceblue;
+  }
   </style>
 <body  style="background-color: rgb(0, 0, 0);">
 
@@ -112,12 +143,19 @@
 
   <img id="exit" class="exit" src="/components/exit2.png">
 
+  <img id="filtro" class="filtro" src="/components/filtro.png">
+
   <script>
     const imagenExit = document.getElementById("exit");
+    const filtro = document.getElementById("filtro");
   
     // Agrega un evento de clic a la imagen
     imagenExit.addEventListener("click", function() {
       window.location.href = "Camera.html";
+    });
+
+    filtro.addEventListener("click", function() {
+      window.location.href = "CameraSearch.html";
     });
 </script>
 
@@ -136,7 +174,13 @@
 
     <div id="cameraCardContainer" class = "cameraCardContainer">
     </div>
-    
+
+  <div >
+    <button type="button" class="btn" id = "searchBtn" data-bs-dismiss="alert">Buscar</button>
+  </div>
+
+  <input type="text" name="name"  class="form-control" id="name" placeholder="Ingrese el nombre de la cámara ">
+  
 </body>
 </html>
 

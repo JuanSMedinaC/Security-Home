@@ -1,5 +1,6 @@
 package com.example.securityhome.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -33,7 +34,7 @@ public class Sensor {
 
     @OneToMany(mappedBy = "sensor")
     List<Alert> alerts;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "sensor")
     List<SensorReading> sensorReadings;
 

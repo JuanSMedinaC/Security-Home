@@ -1,5 +1,6 @@
 package com.example.securityhome.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -8,18 +9,21 @@ public class SensorReading {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    private float sensorValues;
+    private int sensorValues;
     private String units;
-
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "sensor_id")
     Sensor sensor;
 
-    public double getValues() {
+    public SensorReading() {
+    }
+
+    public int getValues() {
         return sensorValues;
     }
 
-    public void setValues(float sensorValues) {
+    public void setValues(int sensorValues) {
         this.sensorValues = sensorValues;
     }
 

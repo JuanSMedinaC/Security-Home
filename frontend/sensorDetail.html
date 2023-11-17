@@ -49,39 +49,43 @@
     <img id = exit class= 'exit' src="/components/exit.png">
 
     </img>
-    <div class = "form">
 
-        <div>
-            <label for="name" class="form-label"></label>
-            <input type="text" class="form-control" id="name" placeholder="Nombre" >
+
+      <div class="container">
+      
+        <h1 class="my-4">Información de sensor</h1>
+      
+          <div class="col-md-9">
+      
+            <div class="card">
+              <div class="card-header">
+                <h5>Sensor</h5>
+              </div>
+              <div class="card-body">
+                <p>
+                  <strong>Nombre:</strong> <label class="text-primary" id="sensorNameLabel">Nombre de sensor</label>
+                </p>
+                <p>
+                  <strong>Ubicación:</strong> <label class="text-primary" id="locationLabel">Ubicación del sensor</label>
+                </p>
+                <p>
+                <strong>Estado:</strong> <label class="text-primary" id="statusLabel">Estado de sensor</label>
+                </p>
+                <p>
+                <strong>Distancia a objetivo:</strong> <label class="text-primary" id="distanceLabel">x cm</label>
+                </p>
+              </div>
+            </div>
+      
+          </div>
+      
         </div>
-        
-
-        <div>
-            <label for="type" class="form-label"></label>
-            <input type="text" class="form-control" id="type" placeholder="Tipo">
-        </div>
-
-        <div>
-            <label for="reference" class="form-label"></label>
-            <input type="text" class="form-control" id="reference" placeholder="Referencia">
-        </div>
-
-        <div>
-            <label for="location" class="form-label"></label>
-            <input type="text" class="form-control" id="location" placeholder="Localización">
-        </div>
-
-        <div>
-            <label for="status" class="form-label"></label>
-            <input type="text" class="form-control" id="status" placeholder="Estado">
-        </div>
-
-        <p><button id = "addBtn" class = "addBtn">Añadir</button></p>
-    </div>
-
-    <a href="gestionA.html">Regresar</a>
+      
+      </div>
+      
+    
 </body>
+
 </html>
 
-<script src ="scripts/addAlarm.js" ></script>
+<script src="scripts/sensorDetail.js"></script>
