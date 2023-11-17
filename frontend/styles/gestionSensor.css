@@ -47,6 +47,18 @@
     color: rgb(255, 255, 255);
 }
 
+
+#DeleteSensorBtn{
+  position: fixed;
+  top: 63.5%;
+  left: 80.5%;
+  width: 15%;
+  height: 8%;
+  background-color: #545454;
+  color: rgb(255, 255, 255);
+}
+
+
 .line1{
   width:38.3%;
   transform:rotate(-90deg);

@@ -1,28 +1,33 @@
 class SensorCard {
 
     constructor(sensor) {
-        this.sensor=sensor;
+        this.sensor = sensor;
     }
-    
-
     render() {
-        let container = document.createElement('div'); //<div></div>
+        let container = document.createElement('div');
         container.classList.add('card');
-        container.classList.add('sensorcard');
+        container.classList.add('border-primary');
+        container.classList.add('mb-3');
+        container.style.maxWidth = '24rem';
 
-        let img = document.createElement('img');
-        img.classList.add('card-img-top');
-        img.setAttribute('src', 'https://img.freepik.com/premium-photo/abstract-background-images-wallpaper-ai-generated_643360-61851.jpg');
+        // Crear el encabezado de la tarjeta
+        let cardHeader = document.createElement('div');
+        cardHeader.classList.add('card-header');
+        cardHeader.innerHTML = ("Nombre: "+this.sensor.name);
 
-        let cardbody = document.createElement('div');
-        cardbody.classList.add('card-body');
+        // Crear el cuerpo de la tarjeta
+        let cardBody = document.createElement('div');
+        cardBody.classList.add('card-body');
+        cardBody.classList.add('text-primary');
 
-        let title = document.createElement('h5');
-        title.classList.add('card-title');
+        // Crear el título de la tarjeta
+        let cardTitle = document.createElement('h5');
+        cardTitle.classList.add('card-title');
 
-        let description = document.createElement('p');
-        description.classList.add('card-text');
-        description.innerHTML = ("Lugar: " +this.sensor.location + " Tipo:" + this.sensor.type +" Estado:" +this.sensor.status);
+        // Crear el párrafo de la tarjeta
+        let cardText = document.createElement('p');
+        cardText.classList.add('card-text');
+        cardText.innerHTML = ("Location: "+this.sensor.location +" . Estado: "+this.cam.status+ ". ");
 
         let button = document.createElement('a');
         button.classList.add('btn');
@@ -30,21 +35,22 @@ class SensorCard {
         button.setAttribute('href', '#');
         button.innerHTML = 'Cambiar estado';
 
+        // Agregar elementos al cuerpo de la tarjeta
+        cardBody.appendChild(cardTitle);
+        cardBody.appendChild(cardText);
+        cardBody.appendChild(button);
 
-        cardbody.appendChild(title);
-        cardbody.appendChild(description);
-        cardbody.appendChild(button);
-        container.appendChild(img);
-        container.appendChild(cardbody);
+        // Agregar elementos al contenedor principal
+        container.appendChild(cardHeader);
+        container.appendChild(cardBody);
 
-        //2. Poner informacion del componente
-        title.innerHTML = this.sensor.name;
-
-        //3. Acciones del componente
         button.addEventListener('click', this.sendSensor.bind(this))
 
-        return container;
+        container.style.marginLeft = '500px';
+        container.style.backgroundColor = '#CDCDCD';
 
+        // Devolver el contenedor principal
+        return container;
     }
 
     async changeStatus(data) {
@@ -73,24 +79,18 @@ class SensorCard {
                     alert("Error");
                     break;
             }
-        }
-            
+        }     
     }
 
     async sendSensor(event) {
         event.preventDefault();
         let sensorDTO = {
             name: this.sensor.name,
-            type: this.sensor.type,
-            reference: this.sensor.reference,
             location: this.sensor.location,
             status: this.sensor.status
         };
         let json = JSON.stringify(sensorDTO);
         console.log(json);
         this.changeStatus(json);
-
     }
-
-
 }

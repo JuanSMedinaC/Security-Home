@@ -6,7 +6,8 @@ const statusE = document.getElementById('status');
 const addBtn = document.getElementById('addBtn');
 
 
-addBtn.addEventListener('click', addSensor);
+addBtn.addEventListener('click', addSensor)
+
 var parse = JSON.parse(window.localStorage.getItem('Authorization'));
 
 async function createSensor(data){
