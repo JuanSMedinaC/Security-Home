@@ -2,7 +2,12 @@ package com.example.securityhome.controller;
 
 import com.example.securityhome.model.Repository.AlarmRepository;
 import com.example.securityhome.model.Repository.AlertRepository;
+import com.example.securityhome.model.Repository.SensorReadingRepository;
+import com.example.securityhome.model.Repository.SensorRepository;
 import com.example.securityhome.model.entity.Alert;
+import com.example.securityhome.model.entity.Sensor;
+import com.example.securityhome.model.entity.SensorReading;
+import com.example.securityhome.model.entitydto.SensorReadingDTO;
 import com.example.securityhome.model.entitydto.AlertDTO;
 import com.example.securityhome.model.entitydto.CameraDTO;
 import com.example.securityhome.util.Authentication;
@@ -25,6 +30,20 @@ public class AlertController {
     @Autowired
     public void setRepository(AlertRepository repository) {
         this.repository = repository;
+    }
+
+    private SensorRepository sensorRepository;
+
+    @Autowired
+    public void setRepository(SensorRepository repository) {
+        this.sensorRepository = repository;
+    }
+
+    private SensorReadingRepository sensorReadingRepository;
+
+    @Autowired
+    public void setRepository(SensorReadingRepository repository) {
+        this.sensorReadingRepository = repository;
     }
 
     @GetMapping("alert/all")
@@ -56,5 +75,34 @@ public class AlertController {
                 return ResponseEntity.status(404).body("Not found");
             }
         }return ResponseEntity.status(403).body("You do not have authorization");
+    }
+  
+    @PostMapping("alert/sensor/add")
+    public ResponseEntity<?> addSensorAlert(@RequestHeader("Authorization") Long id){
+        if (sensorRepository.findById(id).orElse(null) != null) {
+            Alert alertEntity = new Alert();
+            alertEntity.setSensor(sensorRepository.findById(id).orElse(null));
+            alertEntity.setDate(System.currentTimeMillis());
+            alertEntity.setDescription("El Dispositivo "+ sensorRepository.findById(id).orElse(null).getName()+ " en el lugar "+ sensorRepository.findById(id).orElse(null).getLocation()+ " ha detectado un movimiento y ha activado la alarma.");
+            alertEntity.setLocation(sensorRepository.findById(id).orElse(null).getLocation());
+            repository.save(alertEntity);
+            return ResponseEntity.status(200).body("Alerta notificada satisfactoriamente");
+        } else {
+            return ResponseEntity.status(400).body("No autorizado");
+        }
+    }
+
+    @PostMapping("reading/sensor/add")
+    public ResponseEntity<?> addSensorReading(@RequestHeader("Authorization") Long id, @RequestBody SensorReadingDTO sensorReadingDTO){
+        if (sensorRepository.findById(id).orElse(null) != null) {
+            SensorReading sensorReading = new SensorReading();
+            sensorReading.setUnits(sensorReadingDTO.getUnits());
+            sensorReading.setValues(Integer.parseInt(sensorReadingDTO.getSensorValues()));
+            sensorReading.setSensor(sensorRepository.findById(id).orElse(null));
+            sensorReadingRepository.save(sensorReading);
+            return ResponseEntity.status(200).body(sensorReading);
+        } else {
+            return ResponseEntity.status(400).body("No autorizado");
+        }
     }
 }

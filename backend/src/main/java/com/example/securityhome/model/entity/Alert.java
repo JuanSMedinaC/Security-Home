@@ -9,7 +9,8 @@ import java.util.Date;
 public class Alert {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private long id;
+
     private String description;
     private String location;
     private Long date;
@@ -54,7 +55,7 @@ public class Alert {
         return date;
     }
 
-    public void setDate(long date) {
+    public void setDate(Long date) {
         this.date = date;
     }
 }
