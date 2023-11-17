@@ -10,9 +10,10 @@ public class Alert {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
     private String description;
     private String location;
-    private long date;
+    private Long date;
 
     @ManyToOne
     @JoinColumn(name = "sensor_id")
@@ -54,7 +55,7 @@ public class Alert {
         return date;
     }
 
-    public void setDate(long date) {
+    public void setDate(Long date) {
         this.date = date;
     }
 }
