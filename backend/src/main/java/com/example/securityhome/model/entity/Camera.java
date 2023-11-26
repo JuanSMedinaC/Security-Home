@@ -22,12 +22,20 @@ public class Camera {
         this.description = description;
         this.status = status;
     }
+    public Camera(String name, String description, String status, String url) {
+        this.name = name;
+        this.description = description;
+        this.status = status;
+        this.url = url;
+    }
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
     private String description;
     private String status;
+
+    private String url;
 
     @ManyToMany
     @JoinTable(
@@ -98,5 +106,13 @@ public class Camera {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

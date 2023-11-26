@@ -2,6 +2,7 @@ package com.example.securityhome.model.entitydto;
 
 public class SensorDTO {
 
+    private String id;
     private String name;
 
     private String type;
@@ -12,12 +13,13 @@ public class SensorDTO {
 
     private String status;
 
-    public SensorDTO(String name, String type, String reference, String location, String status) {
+    public SensorDTO(String name, String type, String reference, String location, String status, String id) {
         this.name = name;
         this.type = type;
         this.reference = reference;
         this.location = location;
         this.status = status;
+        this.id = id;
     }
 
     public SensorDTO() {
@@ -67,5 +69,13 @@ public class SensorDTO {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

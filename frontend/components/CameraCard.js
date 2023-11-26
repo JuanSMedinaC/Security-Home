@@ -29,17 +29,30 @@ class CameraCard {
         cardText.classList.add('card-text');
         cardText.innerHTML = ("Descripción: "+this.cam.description + ". Estado: "+this.cam.status + ".");
 
+
         let button = document.createElement('a');
         button.classList.add('btn');
         button.classList.add('btn-primary');
         button.setAttribute('href', '#');
         button.innerHTML = 'Cambiar estado';
 
+        let cardLink = document.createElement('a');
+        cardLink.classList.add('btn');
+        cardLink.classList.add('btn-success');
+        cardLink.innerHTML = 'Enlace';
+        cardLink.href = 'http://'+ this.cam.url; 
+
         // Agregar elementos al cuerpo de la tarjeta
         cardBody.appendChild(cardTitle);
         cardBody.appendChild(cardText);
         cardBody.appendChild(button);
-
+        // Agregar un espacio entre los botones
+        let space = document.createElement('div');
+        space.style.marginTop = '10px'; // Ajusta la cantidad de espacio según tus preferencias
+        cardBody.appendChild(space);
+        if (this.cam.status==="Activo"){
+            cardBody.appendChild(cardLink);
+        }
         // Agregar elementos al contenedor principal
         container.appendChild(cardHeader);
         container.appendChild(cardBody);
