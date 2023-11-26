@@ -7,6 +7,7 @@ public class CameraDTO {
     private String name;
     private String description;
     private String status;
+    private String url;
 
     public CameraDTO(){
 
@@ -52,5 +53,13 @@ public class CameraDTO {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

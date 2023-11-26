@@ -14,13 +14,16 @@ window.addEventListener("load",verifyLogin);
 async function getSensor(){
     let user=localStorage.getItem("Authorization");
     user = JSON.parse(user);
+
+    let sensorId=localStorage.getItem("sensorID");
+
     try{
         var auth = user.id
     }catch (error){
         
     }
     //fetch
-    let response = await fetch(iPadd+'/sensor/1', {
+    let response = await fetch(iPadd+'/sensor/'+sensorId, {
         method: 'GET',
         headers: {
             'Content-Type':'application/json',
@@ -33,7 +36,9 @@ async function getSensor(){
         sensorNameLabel.textContent=responseData.name;
         locationLabel.textContent=responseData.location;
         statusLabel.textContent=responseData.status;
+
         updateDistance();
+        
     }
     return true;
 }
@@ -58,7 +63,11 @@ async function updateDistance(){
         let responseData = await response.json();
         console.log(responseData);
         distanceLabel.textContent=responseData.sensorValues+ responseData.units;
-        updateDistance();
+        var delayInMilliseconds = 200; 
+
+        setTimeout(function() {
+            updateDistance();
+        }, delayInMilliseconds);
     }
     return true;
 }
