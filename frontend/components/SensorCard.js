@@ -4,6 +4,8 @@ class SensorCard {
         this.sensor = sensor;
     }
     render() {
+        let current_url = window.location.href;
+        let url_object = new URL(current_url);
         let container = document.createElement('div');
         container.classList.add('card');
         container.classList.add('border-primary');
@@ -35,10 +37,23 @@ class SensorCard {
         button.setAttribute('href', '#');
         button.innerHTML = 'Cambiar estado';
 
+        let cardLink = document.createElement('a');
+        cardLink.classList.add('btn');
+        cardLink.classList.add('btn-success');
+        cardLink.innerHTML = 'Ver sensor';
+        cardLink.href = new URL('/sensorDetail.html' , current_url).href;
+        localStorage.setItem("sensorID",this.sensor.id)
+
+
         // Agregar elementos al cuerpo de la tarjeta
         cardBody.appendChild(cardTitle);
         cardBody.appendChild(cardText);
         cardBody.appendChild(button);
+        // Agregar un espacio entre los botones
+        let space = document.createElement('div');
+        space.style.marginTop = '10px'; // Ajusta la cantidad de espacio según tus preferencias
+        cardBody.appendChild(space);
+        cardBody.appendChild(cardLink);
 
         // Agregar elementos al contenedor principal
         container.appendChild(cardHeader);

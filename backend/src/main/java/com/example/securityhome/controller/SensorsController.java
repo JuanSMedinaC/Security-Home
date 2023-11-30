@@ -66,7 +66,7 @@ public class SensorsController {
             var output = new ArrayList<SensorDTO>();
             sensors.forEach(s -> {
                 output.add(
-                        new SensorDTO(s.getName(), s.getType(), s.getReference(), s.getLocation(),s.getStatus())
+                        new SensorDTO(s.getName(), s.getType(), s.getReference(), s.getLocation(),s.getStatus(), s.getId().toString())
                 );
             });
             return ResponseEntity.status(200).body(output);

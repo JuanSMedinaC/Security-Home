@@ -35,7 +35,7 @@ public class CameraController {
     @PostMapping("AddCamera")
     public ResponseEntity<?> addCamera(@RequestHeader("Authorization") String authorization, @RequestBody CameraDTO cam) {
         User user = userRepository.getUserByID(authorization).get(0);
-        Camera camEntity = new Camera(cam.getName(), cam.getDescription(), cam.getStatus(), user);
+        Camera camEntity = new Camera(cam.getName(), cam.getDescription(), cam.getStatus(), cam.getUrl(), user);
         if (auth.findByUUID(authorization) != null) {
             try {
                 if (camRe.getCameraByName(cam.getName()).get(0) != null) {
