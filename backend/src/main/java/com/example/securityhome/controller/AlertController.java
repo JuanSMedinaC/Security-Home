@@ -8,10 +8,8 @@ import java.util.Properties;
 import com.example.securityhome.model.Repository.AlertRepository;
 import com.example.securityhome.model.Repository.SensorReadingRepository;
 import com.example.securityhome.model.Repository.SensorRepository;
-import com.example.securityhome.model.entity.Alert;
-import com.example.securityhome.model.entity.EmergencyContact;
-import com.example.securityhome.model.entity.Sensor;
-import com.example.securityhome.model.entity.SensorReading;
+import com.example.securityhome.model.Repository.UserRepository;
+import com.example.securityhome.model.entity.*;
 import com.example.securityhome.model.entitydto.SensorReadingDTO;
 import com.example.securityhome.model.entitydto.AlertDTO;
 import com.example.securityhome.util.Authentication;
@@ -49,6 +47,8 @@ public class AlertController {
     public void setRepository(SensorReadingRepository repository) {
         this.sensorReadingRepository = repository;
     }
+
+
 
     @GetMapping("alert/all")
     public ResponseEntity<?> getAll(@RequestHeader("Authorization") String authorization) {
@@ -93,7 +93,7 @@ public class AlertController {
             alertEntity.setLocation(sensor.getLocation());
             repository.save(alertEntity);
             EmergencyContact email;
-            email = new EmergencyContact("secuhome123@outlook.com", sensor.getName(), "majovace2003@gmail.com");
+            email = new EmergencyContact("secuhome123@outlook.com", sensor.getName(), sensor.getUser().getEmail());
             email.sendEmail();
             return ResponseEntity.status(200).body("Alerta notificada satisfactoriamente");
         } else {

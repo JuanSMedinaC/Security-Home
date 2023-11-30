@@ -28,7 +28,7 @@ public class Alarm {
     )
     private List<Sensor> sensors;
 
-    public Alarm(String name, String type, String reference, String location, String status) {
+    public Alarm(String name, String type, String reference, String location, String status, User user) {
         this.name = name;
         this.type = type;
         this.reference = reference;

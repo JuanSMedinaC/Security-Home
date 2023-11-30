@@ -17,12 +17,13 @@ public class Sensor {
     private String location;
     private String status;
 
-    public Sensor(String name, String type, String reference, String location, String status) {
+    public Sensor(String name, String type, String reference, String location, String status, User user) {
         this.name = name;
         this.type = type;
         this.reference = reference;
         this.location = location;
         this.status = status;
+        this.user = user;
     }
 
     @ManyToOne

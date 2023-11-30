@@ -33,9 +33,17 @@ public class SensorsController {
         this.repository = repository;
     }
 
+    private UserRepository userRepository;
+
+    @Autowired
+    public void setUserRepository(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
     @PostMapping("sensor/add")
     public ResponseEntity<?> addSensor(@RequestHeader("Authorization") String authorization,  @RequestBody SensorDTO sensor) {
-        Sensor sensorEntity = new Sensor(sensor.getName(), sensor.getType(), sensor.getReference(), sensor.getLocation(), sensor.getStatus());
+        User user = userRepository.getUserByID(authorization).get(0);
+        Sensor sensorEntity = new Sensor(sensor.getName(), sensor.getType(), sensor.getReference(), sensor.getLocation(), sensor.getStatus(), user);
 
             if (auth.findByUUID(authorization) != null) {
                 try{
