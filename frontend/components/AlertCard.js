@@ -7,30 +7,36 @@ class AlertCard {
     render() {
         let container = document.createElement('div'); //<div></div>
         container.classList.add('card');
-        container.classList.add('alertcard');
+        container.classList.add('border-primary');
+        container.classList.add('mb-3');
 
-        let img = document.createElement('img');
-        img.classList.add('card-img-top');
-        img.setAttribute('src', 'https://img.freepik.com/premium-photo/abstract-background-images-wallpaper-ai-generated_643360-61851.jpg');
+        // Crear el encabezado de la tarjeta
+        let cardHeader = document.createElement('div');
+        cardHeader.classList.add('card-header');
+        cardHeader.innerHTML = ("Locación: "+this.alert.location);
 
-        let cardbody = document.createElement('div');
-        cardbody.classList.add('card-body');
+        // Crear el cuerpo de la tarjeta
+        let cardBody = document.createElement('div');
+        cardBody.classList.add('card-body');
+        cardBody.classList.add('text-primary');
 
-        let title = document.createElement('h5');
-        title.classList.add('card-title');
+         // Crear el título de la tarjeta
+         let cardTitle = document.createElement('h5');
+         cardTitle.classList.add('card-title');
 
-        let description = document.createElement('p');
-        description.classList.add('card-text');
-        let fecha = new Date(this.alert.date)
-        description.innerHTML = (fecha);
+         // Crear la lista de la tarjeta
+        let cardList = document.createElement('ul');
+        cardList.classList.add('list-group');
 
-        let button = document.createElement('a');
-        button.classList.add('btn');
-        button.classList.add('btn-primary');
-        button.setAttribute('href', '#');
-        button.innerHTML = 'Detalles';
+        // Crear elementos de lista para la fecha y la descripción
+        let fechaItem = document.createElement('li');
+        fechaItem.classList.add('list-group-item');
+        let fecha = new Date(this.alert.date);
+        fechaItem.innerHTML = ("Fecha: " + fecha);
 
-        button.addEventListener('click', this.action.bind(this))
+        let descItem = document.createElement('li');
+        descItem.classList.add('list-group-item');
+        descItem.innerHTML = ("Descripción: " + this.alert.description);
 
         let buttonE = document.createElement('a');
         buttonE.classList.add('btn');
@@ -38,30 +44,28 @@ class AlertCard {
         buttonE.setAttribute('href', '#');
         buttonE.innerHTML = 'Eliminar';
 
-        cardbody.appendChild(title);
-        cardbody.appendChild(description);
-        cardbody.appendChild(button);
-        cardbody.appendChild(buttonE);
-        container.appendChild(img);
-        container.appendChild(cardbody);
+        cardBody.appendChild(cardTitle);
+        cardList.appendChild(fechaItem);
+        cardList.appendChild(descItem);
+        cardBody.appendChild(cardList);
+        cardBody.appendChild(buttonE);
+        container.appendChild(cardHeader);
+        container.appendChild(cardBody);
 
-        //2. Poner informacion del componente
-        title.innerHTML = this.alert.location;
 
         buttonE.addEventListener('click', this.sendAction.bind(this))
 
-        container.style.marginLeft = '400px';
-        container.style.height = "400px";
-        container.style.width = "300px";
-        container.style.marginTop = '15px';
+        container.style.display = 'inline-block';
+        container.style.marginRight = '10%';
+        container.style.left = '13%';
+
+        container.style.width = "24%";
+        container.style.height = "auto";
+        container.style.marginTop = '7%';
 
         return container;
     }
 
-    action(event) {
-        event.preventDefault();
-        alert(this.alert.description);
-    }
 
     async sendAction(event) {
         event.preventDefault();
