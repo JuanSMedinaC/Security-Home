@@ -2,6 +2,7 @@ package com.example.securityhome.controller;
 
 
 import com.example.securityhome.model.Repository.CameraRepository;
+import com.example.securityhome.model.Repository.UserRepository;
 import com.example.securityhome.model.entity.Camera;
 import com.example.securityhome.model.entity.User;
 import com.example.securityhome.model.entitydto.AlarmDTO;
@@ -24,9 +25,17 @@ public class CameraController {
         this.camRe = cameraRepository;
     }
 
+    private UserRepository userRepository;
+
+    @Autowired
+    public void setUserRepository(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
     @PostMapping("AddCamera")
     public ResponseEntity<?> addCamera(@RequestHeader("Authorization") String authorization, @RequestBody CameraDTO cam) {
-        Camera camEntity = new Camera(cam.getName(), cam.getDescription(), cam.getStatus(), cam.getUrl());
+        User user = userRepository.getUserByID(authorization).get(0);
+        Camera camEntity = new Camera(cam.getName(), cam.getDescription(), cam.getStatus(), cam.getUrl(), user);
         if (auth.findByUUID(authorization) != null) {
             try {
                 if (camRe.getCameraByName(cam.getName()).get(0) != null) {
