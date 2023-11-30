@@ -17,10 +17,11 @@ public class Camera {
         this.status = status;
     }
 
-    public Camera(String name, String description, String status, User user) {
+    public Camera(String name, String description, String status,String url, User user) {
         this.name = name;
         this.description = description;
         this.status = status;
+        this.url=url;
         this.user = user;
     }
     public Camera(String name, String description, String status, String url) {
