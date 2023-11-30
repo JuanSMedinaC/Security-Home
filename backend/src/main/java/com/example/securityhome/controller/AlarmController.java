@@ -1,7 +1,9 @@
 package com.example.securityhome.controller;
 
 import com.example.securityhome.model.Repository.AlarmRepository;
+import com.example.securityhome.model.Repository.UserRepository;
 import com.example.securityhome.model.entity.Alarm;
+import com.example.securityhome.model.entity.User;
 import com.example.securityhome.model.entitydto.AlarmDTO;
 import com.example.securityhome.util.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,13 @@ public class AlarmController {
         this.repository = repository;
     }
 
+    private UserRepository userRepository;
+
+    @Autowired
+    public void setUserRepository(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
     @GetMapping("alarm/all")
     public ResponseEntity<?> getAll(@RequestHeader("Authorization") String authorization) {
         if (auth.findByUUID(authorization) != null) {
@@ -43,7 +52,8 @@ public class AlarmController {
 
     @PostMapping("alarm/add")
     public ResponseEntity<?> addAlarm(@RequestHeader("Authorization") String authorization, @org.jetbrains.annotations.NotNull @RequestBody AlarmDTO alarm) {
-        Alarm alarmEntity = new Alarm(alarm.getName(), alarm.getType(), alarm.getReference(), alarm.getLocation(), alarm.getStatus());
+        User user = userRepository.getUserByID(authorization).get(0);
+        Alarm alarmEntity = new Alarm(alarm.getName(), alarm.getType(), alarm.getReference(), alarm.getLocation(), alarm.getStatus(), user);
         if (auth.findByUUID(authorization) != null) {
 
             try {
@@ -51,7 +61,6 @@ public class AlarmController {
                     return ResponseEntity.status(409).body("Alarm already created");
                 }
             }catch(Exception e){
-                e.printStackTrace();
                 repository.save(alarmEntity);
                 return ResponseEntity.status(200).body(alarm);
             }

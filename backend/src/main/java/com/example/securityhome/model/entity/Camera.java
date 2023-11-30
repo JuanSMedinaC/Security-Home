@@ -17,10 +17,11 @@ public class Camera {
         this.status = status;
     }
 
-    public Camera(String name, String description, String status) {
+    public Camera(String name, String description, String status, User user) {
         this.name = name;
         this.description = description;
         this.status = status;
+        this.user = user;
     }
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
