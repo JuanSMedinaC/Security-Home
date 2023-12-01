@@ -29,6 +29,12 @@ class SensorCard {
         cardList.classList.add('list-group');
         cardList.style.backgroundColor = 'lightblue';
 
+        let id = document.createElement('li');
+        id.classList.add('list-group-item');
+        id.style.backgroundColor = 'black';
+        id.style.color = 'white';
+        id.innerHTML = ("ID: "+this.sensor.id);
+
         let description = document.createElement('li');
         description.classList.add('list-group-item');
         description.style.backgroundColor = 'black';
@@ -54,6 +60,7 @@ class SensorCard {
         cardLink.href = 'http://'+ this.sensor.url; 
 
         cardBody.appendChild(cardTitle);
+        cardList.appendChild(id);
         cardList.appendChild(description);
         cardList.appendChild(status);
         cardBody.appendChild(cardList);
