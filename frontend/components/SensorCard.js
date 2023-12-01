@@ -4,9 +4,8 @@ class SensorCard {
         this.sensor = sensor;
     }
     render() {
+      
         let container = document.createElement('div');
-        let current_url = window.location.href;
-        let url_object = new URL(current_url);
         container.classList.add('card');
         container.classList.add('border-info');
         container.classList.add('mb-3');
