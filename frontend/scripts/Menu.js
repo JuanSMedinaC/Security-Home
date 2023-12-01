@@ -5,6 +5,11 @@ imagenLogout.addEventListener("click", function() {
   window.localStorage.removeItem("Authorization");
 });
 
+const settings = document.getElementById("settings");
+
+settings.addEventListener("click", function() {
+  window.location.href = "Account.html";
+});
 
 window.addEventListener("load",verifyLogin)
 
