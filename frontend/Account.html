@@ -19,11 +19,31 @@
           background-color: rgb(0, 0, 0); /* Fondo negro */
           border-bottom: 2px solid blue; /* Línea inferior azul */
       }
+
+    .back{
+      height:10%;
+      width:5.5%;
+      left:5%;
+      top:80%;
+      position:fixed;
+
+    }
     </style>
     
     
     <body style="background-color: rgb(255, 255, 255);">
+  
+    <img id="back" class="back" src="/components/exit2.png">
+
+    <script>
+      const imagenExit = document.getElementById("back");
     
+      imagenExit.addEventListener("click", function() {
+        window.location.href = "Menu.html";
+      });
+  
+      </script>
+
     <div class = "main-container">
       <header>
         <nav class="navbar">
@@ -33,7 +53,12 @@
             <div>
               <img src = "/components/Logo.png" class="mov-imgLogo"> 
             </div>
-    
+            <div>
+              
+              <img id = exit class= 'exit' src="/components/exit.png">
+
+              </img>
+            </div>
             <div id='tituloempresaL' class='tituloempresaL'>
                 <div id='securityhomeL' class='securityhomeL'>
                 Security Home</div>
@@ -46,9 +71,6 @@
 
 <div id='elements-cable' class='elements-cable'>
 
-    <img id = exit class= 'exit' src="/components/exit.png">
-
-    </img>
 
 
       <div class="container">
