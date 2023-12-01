@@ -59,7 +59,7 @@
       background-color: #545454;
       color: rgb(255, 255, 255);
     }
-    #GestAlarmBtn{
+    #CamaraBtn{
       position: fixed;
       top: 43.5%;
       left: 72%;
@@ -128,8 +128,29 @@
 
     <button type="button" class="btn" id="addAlarm">Añadir alarma</button>
     <button type="button" class="btn" id="HistorialBtn">Historial</button>
-    <button type="button" class="btn" id="GestAlarmBtn">Gestión de alarmas</button>
+    <button type="button" class="btn" id="CamaraBtn">Camara</button>
     <button type="button" class="btn" id="GestSenBtn">Gestión de sensores</button>
+
+    <script>
+      const addAlarmBtn = document.getElementById("addAlarm");
+      const historialBtn = document.getElementById("HistorialBtn");
+      const camaraBtn = document.getElementById("CamaraBtn");
+      const gestionSBtn = document.getElementById("GestSenBtn");
+    
+      addAlarmBtn.addEventListener("click", function() {
+        window.location.href = "addAlarm.html";
+      });
+      historialBtn.addEventListener("click", function() {
+        window.location.href = "historial.html";
+      });
+      camaraBtn.addEventListener("click", function() {
+        window.location.href = "CamerasAll.html";
+      });
+      gestionSBtn.addEventListener("click", function() {
+        window.location.href = "gestionS.html";
+      });
+  
+      </script>
 
 </body>
 </html>
