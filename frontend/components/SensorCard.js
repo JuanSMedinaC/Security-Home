@@ -4,6 +4,8 @@ class SensorCard {
         this.sensor = sensor;
     }
     render() {
+        let current_url = window.location.href;
+        let url_object = new URL(current_url);
       
         let container = document.createElement('div');
         container.classList.add('card');
@@ -56,8 +58,9 @@ class SensorCard {
         let cardLink = document.createElement('a');
         cardLink.classList.add('btn');
         cardLink.classList.add('btn-success');
-        cardLink.innerHTML = 'Enlace';
-        cardLink.href = 'http://'+ this.sensor.url; 
+        cardLink.innerHTML = 'Ver sensor';
+        cardLink.href = new URL('/sensorDetail.html' , current_url).href;
+        localStorage.setItem("sensorID",this.sensor.id)
 
         cardBody.appendChild(cardTitle);
         cardList.appendChild(id);
