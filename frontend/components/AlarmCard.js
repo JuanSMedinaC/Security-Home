@@ -6,23 +6,47 @@ class AlarmCard {
     
 
     render() {
-        let container = document.createElement('div'); //<div></div>
+        let container = document.createElement('div');
         container.classList.add('card');
-        container.classList.add('alarmcard');
+        container.classList.add('border-info');
+        container.classList.add('mb-3');
+        container.style.backgroundColor = '#003EFF';
 
-        let img = document.createElement('img');
-        img.classList.add('card-img-top');
-        img.setAttribute('src', 'https://img.freepik.com/premium-photo/abstract-background-images-wallpaper-ai-generated_643360-61851.jpg');
+        let cardHeader = document.createElement('div');
+        cardHeader.classList.add('card-header');
+        cardHeader.style.fontWeight = 'bold'; 
+        cardHeader.innerHTML = ("Nombre: " + this.alarm.name);
+        cardHeader.style.color = 'black';
 
-        let cardbody = document.createElement('div');
-        cardbody.classList.add('card-body');
+        let cardBody = document.createElement('div');
+        cardBody.classList.add('card-body');
+        cardBody.classList.add('text-primary');
+        cardBody.style.backgroundColor = 'black';
 
-        let title = document.createElement('h5');
-        title.classList.add('card-title');
+        let cardTitle = document.createElement('h5');
+        cardTitle.classList.add('card-title');
 
-        let description = document.createElement('p');
-        description.classList.add('card-text');
-        description.innerHTML = ("Lugar: " +this.alarm.location + " Tipo:" + this.alarm.type +" Estado:" +this.alarm.status);
+        let cardList = document.createElement('ul');
+        cardList.classList.add('list-group');
+        cardList.style.backgroundColor = 'lightblue';
+
+        let location = document.createElement('li');
+        location.classList.add('list-group-item');
+        location.style.backgroundColor = 'black';
+        location.style.color = 'white';
+        location.innerHTML = ("Lugar: " +this.alarm.location);
+
+        let typeItem = document.createElement('li');
+        typeItem.classList.add('list-group-item');
+        typeItem.style.backgroundColor = 'black';
+        typeItem.style.color = 'white';
+        typeItem.innerHTML = ("Tipo: "+this.alarm.type);
+
+        let statusItem = document.createElement('li');
+        statusItem.classList.add('list-group-item');
+        statusItem.style.backgroundColor = 'black';
+        statusItem.style.color = 'white';
+        statusItem.innerHTML = ("Estado: " +this.alarm.status);
 
         let button = document.createElement('a');
         button.classList.add('btn');
@@ -31,19 +55,41 @@ class AlarmCard {
         button.innerHTML = 'Cambiar estado';
 
 
-        cardbody.appendChild(title);
-        cardbody.appendChild(description);
-        cardbody.appendChild(button);
-        container.appendChild(img);
-        container.appendChild(cardbody);
+        cardBody.appendChild(cardTitle);
+        cardList.appendChild(location);
+        cardList.appendChild(typeItem);
+        cardList.appendChild(statusItem);
+        cardBody.appendChild(cardList);
+        cardBody.appendChild(button);
+        container.appendChild(cardHeader);
+        container.appendChild(cardBody);
 
-        //2. Poner informacion del componente
-        title.innerHTML = this.alarm.name;
+        button.addEventListener('click', this.sendAlarm.bind(this));
 
-        //3. Acciones del componente
-        button.addEventListener('click', this.sendAlarm.bind(this))
+        container.style.display = 'inline-block';
+        container.style.marginRight = '10%';
+        container.style.left = '12%';
+    
+        container.style.width = '24%';
+        container.style.height = 'auto';
+        container.style.marginTop = '7%';
 
         return container;
+
+    }
+
+    async sendAlarm(event) {
+        event.preventDefault();
+        let alarmDTO = {
+            name: this.alarm.name,
+            type: this.alarm.type,
+            reference: this.alarm.reference,
+            location: this.alarm.location,
+            status: this.alarm.status
+        };
+        let json = JSON.stringify(alarmDTO);
+        console.log(json);
+        this.changeStatus(json);
 
     }
 
@@ -64,10 +110,10 @@ class AlarmCard {
         }else{
             switch (response.status) {
                 case 404:
-                    alert("Alarm not found");
+                    alert("No fue encontrado");
                     break;
                 case 403:
-                    alert("You do not have authorization");
+                    alert("No tienes autorización");
                     break;
                 default:
                     alert("Error");
@@ -75,21 +121,6 @@ class AlarmCard {
             }
         }
             
-    }
-
-    async sendAlarm(event) {
-        event.preventDefault();
-        let alarmDTO = {
-            name: this.alarm.name,
-            type: this.alarm.type,
-            reference: this.alarm.reference,
-            location: this.alarm.location,
-            status: this.alarm.status
-        };
-        let json = JSON.stringify(alarmDTO);
-        console.log(json);
-        this.changeStatus(json);
-
     }
 
 

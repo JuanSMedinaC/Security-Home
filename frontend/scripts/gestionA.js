@@ -1,9 +1,14 @@
 const alarmCardContainer = document.getElementById('alarmCardContainer');
 const imagenLogout = document.getElementById("logout");
+const addAlarm = document.getElementById("addAlarm");
 
 imagenLogout.addEventListener("click", function() {
   window.location.href = "VistaUsuario.html";
   window.localStorage.removeItem("Authorization");
+});
+
+addAlarm.addEventListener("click", function(){
+    window.location.href = "addAlarm.html";
 });
 
 var parse = JSON.parse(window.localStorage.getItem('Authorization'));

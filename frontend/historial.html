@@ -28,9 +28,9 @@
   }
 
     #recent{
-      position:fixed;
-      top: 37%;
-      left: 74%;
+      position:absolute;
+      top: 20%;
+      left: 22%;
       width: 12%;
       height: 9%;
       background-color: #4471E4;
@@ -38,13 +38,41 @@
     }
 
     #older{
-      position: fixed;
-      top: 57%;
-      left: 74%;
+      position: absolute;
+      top: 20%;
+      left: 50%;
       width: 12%;
       height: 9%;
       background-color: #4471E4;
       color: aliceblue;
+    }
+
+    #CamaraBtn{
+      position: fixed;
+      top: 35%;
+      left: 72%;
+      width: 15%;
+      height: 12%;
+      background-color: #545454;
+      color: rgb(255, 255, 255);
+    }
+    #GestAlarmBtn{
+      position: fixed;
+      top: 50%;
+      left: 72%;
+      width: 15%;
+      height: 12%;
+      background-color: #545454;
+      color: rgb(255, 255, 255);
+    }
+    #GestSenBtn{
+      position: fixed;
+      top: 65%;
+      left: 72%;
+      width: 15%;
+      height: 12%;
+      background-color: #545454;
+      color: rgb(255, 255, 255);
     }
 
 
@@ -56,7 +84,6 @@
   <script>
     const imagenExit = document.getElementById("exit");
   
-    // Agrega un evento de clic a la imagen
     imagenExit.addEventListener("click", function() {
       window.location.href = "Menu.html";
     });
@@ -100,6 +127,9 @@
 
     <button type="button" class="btn" id="recent">Mas reciente</button>
     <button type="button" class="btn" id="older">Mas antiguo</button>
+    <button type="button" class="btn" id="CamaraBtn">Cámara</button>
+    <button type="button" class="btn" id="GestAlarmBtn">Gestión de alarmas</button>
+    <button type="button" class="btn" id="GestSenBtn">Gestión de sensores</button>
 
 </body>
 </html>

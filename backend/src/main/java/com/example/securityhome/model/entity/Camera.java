@@ -1,5 +1,6 @@
 package com.example.securityhome.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -51,6 +52,7 @@ public class Camera {
     List<Photo> photos;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "user_id")
     User user;
 
