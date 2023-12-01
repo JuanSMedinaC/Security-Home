@@ -8,8 +8,8 @@ imagenExit.addEventListener("click", function() {
   window.localStorage.removeItem("Authorization");
 });
 
-recent.addEventListener('click', orderRecent);
-older.addEventListener('click', orderOlder);
+recent.addEventListener("click", orderRecent);
+older.addEventListener("click", orderOlder);
 
 var parse = JSON.parse(window.localStorage.getItem('Authorization'));
 
