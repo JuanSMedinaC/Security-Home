@@ -4,9 +4,9 @@ const confNewPass = document.getElementById("confNewPass");
 const cancelButton = document.getElementById("cancelButton");
 const submitButton = document.getElementById("submitButton");
 const iPadd = "http://127.0.0.1:8080"
-const imagenExit = document.getElementById("logout");
+const imagenLogout = document.getElementById("logout");
 
-imagenExit.addEventListener("click", function() {
+imagenLogout.addEventListener("click", function() {
   window.location.href = "VistaUsuario.html";
   window.localStorage.removeItem("Authorization");
 });

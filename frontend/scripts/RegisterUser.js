@@ -4,9 +4,9 @@ const passInput = document.getElementById('passInput');
 const passAgainInput = document.getElementById('passAgainInput');
 const singUpBtn = document.getElementById('SingUpBtn');
 const iPadd = "http://127.0.0.1:8080";
-const imagenExit = document.getElementById("exit");
+const imagenLogout = document.getElementById("exit");
 
-imagenExit.addEventListener("click", function() {
+imagenLogout.addEventListener("click", function() {
   window.location.href = "VistaUsuario.html";
   window.localStorage.removeItem("Authorization");
 });

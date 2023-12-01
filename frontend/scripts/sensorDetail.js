@@ -2,10 +2,10 @@ const sensorNameLabel = document.getElementById('sensorNameLabel');
 const locationLabel = document.getElementById('locationLabel');
 const statusLabel = document.getElementById('statusLabel');
 const distanceLabel = document.getElementById('distanceLabel');
-const imagenExit = document.getElementById("logout");
+const imagenLogout = document.getElementById("logout");
 const iPadd = "http://127.0.0.1:8080"
 
-imagenExit.addEventListener("click", function() {
+imagenLogout.addEventListener("click", function() {
   window.location.href = "VistaUsuario.html";
   window.localStorage.removeItem("Authorization");
 });

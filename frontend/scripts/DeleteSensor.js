@@ -1,9 +1,9 @@
 const referenceE= document.getElementById('reference');
 const deleteBtn = document.getElementById('deleteBtn');
 const iPadd = "http://127.0.0.1:8080"
-const imagenExit = document.getElementById("logout");
+const imagenLogout = document.getElementById("logout");
 
-imagenExit.addEventListener("click", function() {
+imagenLogout.addEventListener("click", function() {
   window.location.href = "VistaUsuario.html";
   window.localStorage.removeItem("Authorization");
 });
@@ -57,4 +57,39 @@ async function deleteSensor(data){
     let json = await response.json(); 
     console.log(json);
 }
+
+
+window.addEventListener("load",verifyLogin)
+
+
+async function verifyLogin(){
+    let user=localStorage.getItem("Authorization");
+    user = JSON.parse(user);
+    try{
+        var auth = user.id
+    }catch (error){
+        window.location.href="../VistaUsuario.html"
+    }
+    
+    
+    //fetch
+    let response = await fetch(iPadd+'/auth', {
+        method: 'GET',
+        headers: {
+            'Content-Type':'application/json',
+            'Authorization': auth
+        },
+    });
+    if(response.status == 200){
+        console.log(response)
+        let responseData = await response.json();
+        userNameLabel.textContent=responseData.n
+        mailLabel.textContent=responseData.e
+        console.log(responseData);
+    }else{
+        window.location.href="../VistaUsuario.html"
+    } 
+    return true;
+}
+
 
