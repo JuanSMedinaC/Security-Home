@@ -25,7 +25,7 @@ height:20%;
 width:10%;
 left:89.91%;
 top:20%;
-position:absolute;
+position:fixed;
 }
 
 .group8002
@@ -45,7 +45,7 @@ height:20%;
 width:5%;
 left:0%;
 top:60%;
-position:absolute;
+position:fixed;
 border: #6dc5ff;
 }
 
@@ -64,6 +64,6 @@ position: fixed;
   width:20%;
   left:79.8%;
   top:70%;
-  position:absolute;
+  position:fixed;
 }
 
