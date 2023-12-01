@@ -4,32 +4,42 @@ class SensorCard {
         this.sensor = sensor;
     }
     render() {
-        let current_url = window.location.href;
-        let url_object = new URL(current_url);
+      
         let container = document.createElement('div');
         container.classList.add('card');
-        container.classList.add('border-primary');
+        container.classList.add('border-info');
         container.classList.add('mb-3');
-        container.style.maxWidth = '24rem';
+        container.style.backgroundColor = '#003EFF';
 
-        // Crear el encabezado de la tarjeta
         let cardHeader = document.createElement('div');
         cardHeader.classList.add('card-header');
+        cardHeader.style.fontWeight = 'bold'; 
         cardHeader.innerHTML = ("Nombre: "+this.sensor.name);
+        cardHeader.style.color = 'black';
 
-        // Crear el cuerpo de la tarjeta
         let cardBody = document.createElement('div');
         cardBody.classList.add('card-body');
         cardBody.classList.add('text-primary');
+        cardBody.style.backgroundColor = 'black';
 
-        // Crear el título de la tarjeta
         let cardTitle = document.createElement('h5');
         cardTitle.classList.add('card-title');
+        
+        let cardList = document.createElement('ul');
+        cardList.classList.add('list-group');
+        cardList.style.backgroundColor = 'lightblue';
 
-        // Crear el párrafo de la tarjeta
-        let cardText = document.createElement('p');
-        cardText.classList.add('card-text');
-        cardText.innerHTML = ("Location: "+this.sensor.location +" . Estado: "+this.sensor.status+ ". ");
+        let description = document.createElement('li');
+        description.classList.add('list-group-item');
+        description.style.backgroundColor = 'black';
+        description.style.color = 'white';
+        description.innerHTML = ("Ubicación: "+this.sensor.location);
+
+        let status = document.createElement('li');
+        status.classList.add('list-group-item');
+        status.style.backgroundColor = 'black';
+        status.style.color = 'white';
+        status.innerHTML = ("Estado: "+this.sensor.status);
 
         let button = document.createElement('a');
         button.classList.add('btn');
@@ -40,31 +50,34 @@ class SensorCard {
         let cardLink = document.createElement('a');
         cardLink.classList.add('btn');
         cardLink.classList.add('btn-success');
-        cardLink.innerHTML = 'Ver sensor';
-        cardLink.href = new URL('/sensorDetail.html' , current_url).href;
-        localStorage.setItem("sensorID",this.sensor.id)
+        cardLink.innerHTML = 'Enlace';
+        cardLink.href = 'http://'+ this.sensor.url; 
 
-
-        // Agregar elementos al cuerpo de la tarjeta
         cardBody.appendChild(cardTitle);
-        cardBody.appendChild(cardText);
+        cardList.appendChild(description);
+        cardList.appendChild(status);
+        cardBody.appendChild(cardList);
         cardBody.appendChild(button);
-        // Agregar un espacio entre los botones
-        let space = document.createElement('div');
-        space.style.marginTop = '10px'; // Ajusta la cantidad de espacio según tus preferencias
-        cardBody.appendChild(space);
-        cardBody.appendChild(cardLink);
 
-        // Agregar elementos al contenedor principal
+        let space = document.createElement('div');
+        space.style.marginTop = '10px'; 
+        cardBody.appendChild(space);
+        if (this.sensor.status==="Activo"){
+            cardBody.appendChild(cardLink);
+        }
         container.appendChild(cardHeader);
         container.appendChild(cardBody);
 
         button.addEventListener('click', this.sendSensor.bind(this))
 
-        container.style.marginLeft = '500px';
-        container.style.backgroundColor = '#CDCDCD';
+        container.style.display = 'inline-block';
+        container.style.marginRight = '10%';
+        container.style.left = '12%';
+    
+        container.style.width = '24%';
+        container.style.height = 'auto';
+        container.style.marginTop = '7%';
 
-        // Devolver el contenedor principal
         return container;
     }
 
