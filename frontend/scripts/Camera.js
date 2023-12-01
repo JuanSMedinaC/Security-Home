@@ -5,6 +5,12 @@ const HistorialBtn = document.getElementById('HistorialBtn');
 const GestAlarmBtn = document.getElementById('GestAlarmBtn');
 const GestSenBtn = document.getElementById('GestSenBtn');
 const iPadd = "http://127.0.0.1:8080"
+const imagenExit = document.getElementById("logout");
+
+imagenExit.addEventListener("click", function() {
+  window.location.href = "VistaUsuario.html";
+  window.localStorage.removeItem("Authorization");
+});
 
 AddCamBtn.addEventListener("click",function(){
     window.location.href="/AddCamera.html";

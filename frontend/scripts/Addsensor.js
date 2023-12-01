@@ -4,7 +4,12 @@ const referenceE= document.getElementById('reference');
 const locationE= document.getElementById('location');
 const statusE = document.getElementById('status');
 const addBtn = document.getElementById('addBtn');
+const imagenExit = document.getElementById("logout");
 
+imagenExit.addEventListener("click", function() {
+  window.location.href = "VistaUsuario.html";
+  window.localStorage.removeItem("Authorization");
+});
 
 addBtn.addEventListener('click', addSensor)
 

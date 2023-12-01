@@ -4,7 +4,12 @@ const nameE= document.getElementById('name');
 const searchBtn = document.getElementById('searchBtn');
 
 var parse = JSON.parse(window.localStorage.getItem('Authorization'));
+const imagenExit = document.getElementById("logout");
 
+imagenExit.addEventListener("click", function() {
+  window.location.href = "VistaUsuario.html";
+  window.localStorage.removeItem("Authorization");
+});
 async function getCameras(){
     let auth = localStorage.getItem("Authorization");
     let response = await fetch('http://localhost:8080/camerasAll',{

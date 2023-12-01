@@ -99,8 +99,15 @@
   top: 180px;
   border:7px solid #19859C;
 }
-
 .exit{
+  height:90%;
+  width:5%;
+  left:90%;
+  top:5%;
+  position:absolute;
+}
+
+.exit2{
   height:13%;
   width:6.5%;
   left:8%;

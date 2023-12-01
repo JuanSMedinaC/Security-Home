@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <link rel = "stylesheet" href = "/styles/style_base.css"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add a new sensor</title>
+    <title>Añadir sensor</title>
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" >
@@ -20,12 +20,15 @@
             <div>
                <img src = "/components/Logo.png" class="mov-imgLogo"> 
             </div>
+            <div>
+              <img id="logout" class="exit" src="/components/exit.png">
+            </div>
           </div>
         </nav>
       </header>
     </div>
 
-    <img id="exit" class="exit" src="/components/exit2.png">
+    <img id="exit" class="exit2" src="/components/exit2.png">
 
     <script>
       const imagenExit = document.getElementById("exit");
@@ -52,36 +55,36 @@
     <div id='rectangle36' class='rectangle36'>
     </div>
     <header>
-      <h1 id = "title">Add Sensor</h1>
+      <h1 id = "title">Añadir Sensor</h1>
     </header>
     <main>
       <form action="/sensor/add" method="post">
 
         <div class="field">
           <label for="name"></label>
-          <input type="text" name="name"  class="form-control" id="name" placeholder="Name">
+          <input type="text" name="name"  class="form-control" id="name" placeholder="Nombre">
         </div>
         <div class="field">
           <label for="type"></label>
-          <input type="text" name="type"  class="form-control" id="type" placeholder="Type">
+          <input type="text" name="type"  class="form-control" id="type" placeholder="Tipo">
         </div>
         <div class="field">
           <label for="reference"></label>
-          <input type="text" name="reference"  class="form-control" id="reference" placeholder="Reference">
+          <input type="text" name="reference"  class="form-control" id="reference" placeholder="Referencia">
         </div>
         <div class="field">
           <label for="location"></label>
-          <input type="text" name="location"  class="form-control" id="location" placeholder="Location">
+          <input type="text" name="location"  class="form-control" id="location" placeholder="Ubicación">
         </div>
       
         <div>
           <label for="status" class="form-label"></label>
-          <input type="text" class="form-control" id="status" placeholder="Status">
+          <input type="text" class="form-control" id="status" placeholder="Estado">
           </div>
 
 
         <div >
-          <button type="button" class="btn" id = "addBtn" data-bs-dismiss="alert">Add</button>
+          <button type="button" class="btn" id = "addBtn" data-bs-dismiss="alert">Añadir sensor</button>
         </div>
       </form>
     </main>

@@ -20,12 +20,15 @@
           <div>
             <img src = "/components/Logo.png" class="mov-imgLogo"> 
           </div>
+          <div>
+            <img id="logout" class="exit" src="/components/exit.png">
+          </div>
         </div>
       </nav>
     </header>
   </div>
 
-  <img id="exit" class="exit" src="/components/exit2.png">
+  <img id="exit" class="exit2" src="/components/exit2.png">
 
   <script>
     const imagenExit = document.getElementById("exit");
@@ -52,22 +55,22 @@
 <div id='rectangle36' class='rectangle36'>
 </div>
   <header>
-    <h1 id = "title">Delete Sensor</h1>
+    <h1 id = "title">Eliminar Sensor</h1>
   </header>
   <main>
     <form action="/sensor/delete" method="post">
       <div class="field">
         <label for="reference"></label>
-        <input type="text" name="reference"  class="form-control" id="reference" placeholder="Write de Reference">
+        <input type="text" name="reference"  class="form-control" id="reference" placeholder="Digite la referencia">
       </div>
 
       <div >
-        <button type="button" class="btn" id = "deleteBtn" data-bs-dismiss="alert">Delete</button>
+        <button type="button" class="btn" id = "deleteBtn" data-bs-dismiss="alert">Eliminar sensor</button>
       </div>
 
       <p type='text' class="textInf">
         <div class="textInf">
-            Enter the reference of the sensor you want to delete
+          Digite la referencia del sensor que desea eliminar
         </div>
      </p>
     </form>

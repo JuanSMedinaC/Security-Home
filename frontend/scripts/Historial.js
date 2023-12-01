@@ -1,6 +1,12 @@
 const alertCardContainer = document.getElementById('alertCardContainer');
 const recent = document.getElementById('recent');
 const older = document.getElementById('older');
+const imagenExit = document.getElementById("logout");
+
+imagenExit.addEventListener("click", function() {
+  window.location.href = "VistaUsuario.html";
+  window.localStorage.removeItem("Authorization");
+});
 
 recent.addEventListener('click', orderRecent);
 older.addEventListener('click', orderOlder);

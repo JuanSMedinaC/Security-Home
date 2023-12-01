@@ -65,7 +65,7 @@
     border:7px solid #19859C;
   }
 
-  .exit{
+  .exit2{
     height:13%;
     width:6.5%;
     left:8%;
@@ -91,12 +91,15 @@
           <div>
             <img src = "/components/Logo.png" class="mov-imgLogo"> 
           </div>
+          <div>
+            <img id="logout" class="exit" src="/components/exit.png">
+          </div>
         </div>
       </nav>
     </header>
   </div>
 
-  <img id="exit" class="exit" src="/components/exit2.png">
+  <img id="exit" class="exit2" src="/components/exit2.png">
 
   <script>
     const imagenExit = document.getElementById("exit");
@@ -123,22 +126,22 @@
 <div id='rectangle36' class='rectangle36'>
 </div>
   <header>
-    <h1 id = "title">Delete camera</h1>
+    <h1 id = "title">Eliminar camera</h1>
   </header>
   <main>
     <form action="/deleteCamera" method="post">
       <div class="field">
         <label for="name"></label>
-        <input type="text" name="name"  class="form-control" id="name" placeholder="Name">
+        <input type="text" name="name"  class="form-control" id="name" placeholder="Nombre">
       </div>
 
       <div >
-        <button type="button" class="btn" id = "deleteBtn" data-bs-dismiss="alert">Delete</button>
+        <button type="button" class="btn" id = "deleteBtn" data-bs-dismiss="alert">Eliminar</button>
       </div>
 
       <p type='text' class="textInf">
         <div class="textInf">
-            Enter the name of the camera you want to delete
+            Ingresa el nombre de la cámara que deseas eliminar.
         </div>
      </p>
     </form>

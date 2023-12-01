@@ -67,3 +67,10 @@ position: fixed;
   position:fixed;
 }
 
+.exit{
+  height:90%;
+  width:5%;
+  left:90%;
+  top:5%;
+  position:absolute;
+}
