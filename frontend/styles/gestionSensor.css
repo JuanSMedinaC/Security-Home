@@ -68,10 +68,18 @@
   position:absolute;
 }
 
-.exit{
+.exit2{
 height:10%;
 width:5.5%;
 left:5%;
 top:80%;
 position:absolute;
+}
+
+.exit{
+  height:90%;
+  width:5%;
+  left:90%;
+  top:5%;
+  position:absolute;
 }

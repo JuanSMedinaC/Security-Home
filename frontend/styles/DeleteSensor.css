@@ -52,11 +52,18 @@
   border:7px solid #19859C;
 }
 
-.exit{
+.exit2{
   height:13%;
   width:6.5%;
   left:8%;
   top:80%;
+  position:absolute;
+}
+.exit{
+  height:90%;
+  width:5%;
+  left:90%;
+  top:5%;
   position:absolute;
 }
 

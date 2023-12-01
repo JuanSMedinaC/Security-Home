@@ -1,4 +1,3 @@
-const imagenExit = document.getElementById("exit");
 const logInBtn = document.getElementById("LogInBtn");
 const emailTextField = document.getElementById("emailInput");
 const passwordTextField = document.getElementById("passInput");
@@ -64,7 +63,11 @@ async function verifyLogin(){
     if(response.status == 200){
         let responseData = await response.json();
         console.log(responseData);
-        window.location.href="../Menu.html"
+        if(responseData.userDto.id===1){
+            window.location.href="../VistaAdministrador.html"
+        }else{
+            window.location.href="../Menu.html"
+        }
     }
     return true;
 }

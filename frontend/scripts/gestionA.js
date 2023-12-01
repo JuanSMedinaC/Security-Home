@@ -1,5 +1,5 @@
 const alarmCardContainer = document.getElementById('alarmCardContainer');
-const imagenExit = document.getElementById("exit");
+const imagenExit = document.getElementById("logout");
 
 imagenExit.addEventListener("click", function() {
   window.location.href = "VistaUsuario.html";

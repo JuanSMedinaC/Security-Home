@@ -4,6 +4,12 @@ const statusE = document.getElementById('status');
 const addBtn = document.getElementById('addBtn');
 const ip = document.getElementById('ip');
 const iPadd = "http://127.0.0.1:8080"
+const imagenExit = document.getElementById("logout");
+
+imagenExit.addEventListener("click", function() {
+  window.location.href = "VistaUsuario.html";
+  window.localStorage.removeItem("Authorization");
+});
 
 addBtn.addEventListener('click', addCam);
 var parse = JSON.parse(window.localStorage.getItem('Authorization'));
@@ -60,3 +66,4 @@ async function addCam(event){
     console.log(json);
     createCamera(json);
 }
+
