@@ -87,8 +87,6 @@ async function verifyLogin(){
     if(response.status == 200){
         console.log(response)
         let responseData = await response.json();
-        userNameLabel.textContent=responseData.n
-        mailLabel.textContent=responseData.e
         console.log(responseData);
     }else{
         window.location.href="../VistaUsuario.html"
