@@ -11,29 +11,24 @@ class AlertCard {
         container.classList.add('mb-3');
         container.style.backgroundColor = '#003EFF';
     
-        // Crear el encabezado de la tarjeta
         let cardHeader = document.createElement('div');
         cardHeader.classList.add('card-header');
         cardHeader.style.fontWeight = 'bold'; 
         cardHeader.innerHTML = ("Locación: " + this.alert.location);
         cardHeader.style.color = 'black';
-    
-        // Crear el cuerpo de la tarjeta
+
         let cardBody = document.createElement('div');
         cardBody.classList.add('card-body');
         cardBody.classList.add('text-primary');
         cardBody.style.backgroundColor = 'black';
     
-        // Crear el título de la tarjeta
         let cardTitle = document.createElement('h5');
         cardTitle.classList.add('card-title');
     
-        // Crear la lista de la tarjeta
         let cardList = document.createElement('ul');
         cardList.classList.add('list-group');
         cardList.style.backgroundColor = 'lightblue';
     
-        // Crear elementos de lista para la fecha y la descripción
         let fechaItem = document.createElement('li');
         fechaItem.classList.add('list-group-item');
         fechaItem.style.backgroundColor = 'black';

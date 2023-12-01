@@ -2,6 +2,11 @@ const cameraCardContainer = document.getElementById('cameraCardContainer');
 
 const nameE= document.getElementById('name');
 const searchBtn = document.getElementById('searchBtn');
+const AddCamBtn = document.getElementById('AddCamBtn');
+const DelCamBtn = document.getElementById('DelCamBtn');
+const HistorialBtn = document.getElementById('HistorialBtn');
+const GestAlarmBtn = document.getElementById('GestAlarmBtn');
+const GestSenBtn = document.getElementById('GestSenBtn');
 
 var parse = JSON.parse(window.localStorage.getItem('Authorization'));
 const imagenLogout = document.getElementById("logout");
@@ -10,6 +15,27 @@ imagenLogout.addEventListener("click", function() {
   window.location.href = "VistaUsuario.html";
   window.localStorage.removeItem("Authorization");
 });
+
+AddCamBtn.addEventListener("click",function(){
+    window.location.href="/AddCamera.html";
+});
+
+DelCamBtn.addEventListener("click",function(){
+    window.location.href="/DeleteCamera.html";
+});
+
+HistorialBtn.addEventListener("click",function(){
+    window.location.href="/historial.html";
+})
+
+GestAlarmBtn.addEventListener("click",function(){
+    window.location.href="/gestionA.html";
+})
+
+GestSenBtn.addEventListener("click",function(){
+    window.location.href="/gestionS.html";
+})
+
 async function getCameras(){
     let auth = localStorage.getItem("Authorization");
     let response = await fetch('http://localhost:8080/camerasAll',{
@@ -41,7 +67,6 @@ getCameras();
 searchBtn.addEventListener('click', createObject);
 
 function createObject(event){
-    console.log("aqui");
     event.preventDefault();
     let name = nameE.value;
     if (name === '') {

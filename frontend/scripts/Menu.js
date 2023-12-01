@@ -8,7 +8,6 @@ imagenLogout.addEventListener("click", function() {
 
 window.addEventListener("load",verifyLogin)
 
-
 async function verifyLogin(){
     let user=localStorage.getItem("Authorization");
     user = JSON.parse(user);

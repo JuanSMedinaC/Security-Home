@@ -2,14 +2,29 @@ const alertCardContainer = document.getElementById('alertCardContainer');
 const recent = document.getElementById('recent');
 const older = document.getElementById('older');
 const imagenLogout = document.getElementById("logout");
+const CamaraBtn = document.getElementById('CamaraBtn');
+const GestAlarmBtn = document.getElementById('GestAlarmBtn');
+const GestSenBtn = document.getElementById('GestSenBtn');
 
 imagenLogout.addEventListener("click", function() {
   window.location.href = "VistaUsuario.html";
   window.localStorage.removeItem("Authorization");
 });
 
-recent.addEventListener('click', orderRecent);
-older.addEventListener('click', orderOlder);
+CamaraBtn.addEventListener("click",function(){
+    window.location.href="/CamerasAll.html";
+})
+
+GestAlarmBtn.addEventListener("click",function(){
+    window.location.href="/gestionA.html";
+})
+
+GestSenBtn.addEventListener("click",function(){
+    window.location.href="/gestionS.html";
+})
+
+recent.addEventListener("click", orderRecent);
+older.addEventListener("click", orderOlder);
 
 var parse = JSON.parse(window.localStorage.getItem('Authorization'));
 
