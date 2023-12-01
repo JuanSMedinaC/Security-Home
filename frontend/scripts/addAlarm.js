@@ -27,14 +27,14 @@ async function createAlarm(data){
 
     if(response.status === 200){
         window.location.href="../gestionA.html"
-        alert("Alarm successfully added");
+        alert("La alarma se ha añadido correctamente");
     }else{
         switch (response.status) {
             case 409:
-                alert("Alarm was already created");
+                alert("La alarma ya se habia creado");
                 break;
             case 403:
-                alert("Couldn't be added a alarm correctly");
+                alert("No se pudo añadir correctamente");
                 break;
             default:
                 alert("Error");
