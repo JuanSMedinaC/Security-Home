@@ -2,6 +2,7 @@ const nameE= document.getElementById('name');
 const descriptionE = document.getElementById('description');
 const statusE = document.getElementById('status');
 const addBtn = document.getElementById('addBtn');
+const ip = document.getElementById('ip');
 const iPadd = "http://127.0.0.1:8080"
 
 addBtn.addEventListener('click', addCam);
@@ -19,15 +20,15 @@ async function createCamera(data){
     });
     
     if(response.status === 200){
-        alert("camera successfully added");
+        alert("La cámara se añadió correctamente");
         window.location.href = "../Camera.html";
     }else{
         switch (response.status) {
             case 409:
-                alert("Camera was already created");
+                alert("La cámara ya existe");
                 break;
             case 403:
-                alert("Couldn't be added a camera correctly");
+                alert("No se puede añadir correctamente");
                 break;
             default:
                 alert("Error");
@@ -44,14 +45,16 @@ async function addCam(event){
     let name = nameE.value;
     let description = descriptionE.value;
     let status = statusE.value;
-    if (name === '' || description === '' || status === '') {
-        alert("Please complete all fields before adding the camera");
+    let url = ip.value;
+    if (name === '' || description === '' || status === '' || url === '') {
+        alert("Por favor complete todos los espacios para añadir la cámara");
         return;
     }
     let cameraDTO = {
         name: name,
         description: description,
-        status: status
+        status: status,
+        url: url
     };
     let json = JSON.stringify(cameraDTO);
     console.log(json);
