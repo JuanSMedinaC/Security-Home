@@ -114,3 +114,19 @@ async function verifyLogin(){
 
 
 getAlerts();
+
+const downloadHistoryBtn = document.getElementById('downloadHistoryBtn');
+
+downloadHistoryBtn.addEventListener('click', function() {
+    const historyContainer = document.getElementById('alertCardContainer');
+    downloadPDF(historyContainer, 'historial.pdf');
+});
+
+function downloadPDF(element, filename) {
+    html2pdf(element, {
+        filename: filename,
+        margin: 10,
+        image: { type: 'jpeg', quality: 0.98 },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    });
+}
