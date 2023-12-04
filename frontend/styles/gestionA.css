@@ -1,0 +1,20 @@
+ 
+ #alarmCardContainer{
+     display: flex; 
+     flex-wrap: wrap;
+     flex-direction: row;
+ }
+ 
+ #alarmCardContainer div{
+     margin: 16px;
+ }
+ 
+ 
+ .alarmform{
+     width: 50%;
+     margin: 0 auto;
+ }
+ 
+ .alarmcard{
+     width: 18rem;
+ }
